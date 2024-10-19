@@ -820,6 +820,7 @@ G2L["59"]["Name"] = [[TabHolder]];
 
 -- StarterGui.SSWorks.Main.ContentProvider.Executor.TabHolder.Tab0
 G2L["5a"] = Instance.new("TextBox", G2L["59"]);
+G2L["5a"]["CursorPosition"] = -1;
 G2L["5a"]["TextColor3"] = Color3.fromRGB(199, 199, 199);
 G2L["5a"]["BorderSizePixel"] = 0;
 G2L["5a"]["TextXAlignment"] = Enum.TextXAlignment.Left;
@@ -3257,8 +3258,8 @@ G2L["165"] = Instance.new("Frame", G2L["1"]);
 G2L["165"]["Visible"] = false;
 G2L["165"]["BorderSizePixel"] = 0;
 G2L["165"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["165"]["Size"] = UDim2.new(0, 250, 0, 250);
-G2L["165"]["Position"] = UDim2.new(0.43476, 0, 0.35955, 0);
+G2L["165"]["Size"] = UDim2.new(0, 350, 0, 350);
+G2L["165"]["Position"] = UDim2.new(0.42488, 0, 0.33835, 0);
 G2L["165"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["165"]["Name"] = [[AimAssistFrame]];
 G2L["165"]["BackgroundTransparency"] = 1;
@@ -5106,8 +5107,8 @@ local function C_168()
 		local screenHeight = game:GetService("Workspace").CurrentCamera.ViewportSize.Y
 
 		-- Frame size (350x350) - adjust these values if needed
-		local frameWidth = 250
-		local frameHeight = 250
+		local frameWidth = 350
+		local frameHeight = 350
 
 		-- Calculate new frame position so the mouse is at the center of the frame
 		local newX = math.clamp(mouse.X - frameWidth / 2, 0, screenWidth - frameWidth)
