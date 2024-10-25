@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 455 | Scripts: 53 | Modules: 5 | Tags: 0
+-- Instances: 460 | Scripts: 53 | Modules: 5 | Tags: 0
 local G2L = {};
 
 -- StarterGui.SSWorks
@@ -179,6 +179,7 @@ G2L["14"]["Name"] = [[PurchasesAPI]];
 
 -- StarterGui.SSWorks.Main
 G2L["15"] = Instance.new("CanvasGroup", G2L["1"]);
+G2L["15"]["Visible"] = false;
 G2L["15"]["BorderSizePixel"] = 0;
 G2L["15"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
 G2L["15"]["Size"] = UDim2.new(0, 690, 0, 447);
@@ -4211,331 +4212,382 @@ G2L["1c7"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
 G2L["1c7"]["Color"] = Color3.fromRGB(101, 101, 101);
 
 
+-- StarterGui.SSWorks.Loader
+G2L["1c8"] = Instance.new("CanvasGroup", G2L["1"]);
+G2L["1c8"]["GroupTransparency"] = 1;
+G2L["1c8"]["BorderSizePixel"] = 0;
+G2L["1c8"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
+G2L["1c8"]["Size"] = UDim2.new(0, 400, 0, 400);
+G2L["1c8"]["Position"] = UDim2.new(0.39594, 0, 0.31521, 0);
+G2L["1c8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1c8"]["Name"] = [[Loader]];
+
+
+-- StarterGui.SSWorks.Loader.UICorner
+G2L["1c9"] = Instance.new("UICorner", G2L["1c8"]);
+
+
+
+-- StarterGui.SSWorks.Loader.UIStroke
+G2L["1ca"] = Instance.new("UIStroke", G2L["1c8"]);
+G2L["1ca"]["Transparency"] = 1;
+G2L["1ca"]["Thickness"] = 2;
+G2L["1ca"]["Color"] = Color3.fromRGB(50, 194, 255);
+
+
+-- StarterGui.SSWorks.Loader.ImageLabel
+G2L["1cb"] = Instance.new("ImageLabel", G2L["1c8"]);
+G2L["1cb"]["BorderSizePixel"] = 0;
+G2L["1cb"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1cb"]["ImageTransparency"] = 1;
+G2L["1cb"]["Image"] = [[http://www.roblox.com/asset/?id=6031734907]];
+G2L["1cb"]["Size"] = UDim2.new(0, 100, 0, 100);
+G2L["1cb"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1cb"]["BackgroundTransparency"] = 1;
+G2L["1cb"]["Position"] = UDim2.new(0.375, 0, 0.098, 0);
+
+
+-- StarterGui.SSWorks.Loader.TextLabel
+G2L["1cc"] = Instance.new("TextLabel", G2L["1c8"]);
+G2L["1cc"]["TextWrapped"] = true;
+G2L["1cc"]["BorderSizePixel"] = 0;
+G2L["1cc"]["TextTransparency"] = 1;
+G2L["1cc"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1cc"]["TextSize"] = 22;
+G2L["1cc"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["1cc"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1cc"]["BackgroundTransparency"] = 1;
+G2L["1cc"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["1cc"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1cc"]["Text"] = [[Loading Library]];
+G2L["1cc"]["Position"] = UDim2.new(0.25, 0, 0.3475, 0);
+
+
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
 local G2L_MODULES = {};
 local function require(Module:ModuleScript)
-    local ModuleState = G2L_MODULES[Module];
-    if ModuleState then
-        if not ModuleState.Required then
-            ModuleState.Required = true;
-            ModuleState.Value = ModuleState.Closure();
-        end
-        return ModuleState.Value;
-    end;
-    return G2L_REQUIRE(Module);
+	local ModuleState = G2L_MODULES[Module];
+	if ModuleState then
+		if not ModuleState.Required then
+			ModuleState.Required = true;
+			ModuleState.Value = ModuleState.Closure();
+		end
+		return ModuleState.Value;
+	end;
+	return G2L_REQUIRE(Module);
 end
 
 G2L_MODULES[G2L["3"]] = {
-Closure = function()
-    local script = G2L["3"];local TS = game:GetService('TweenService')
-local Template = script.Template
-local module = {}
+	Closure = function()
+		local script = G2L["3"];local TS = game:GetService('TweenService')
+		local Template = script.Template
+		local module = {}
 
-function module:Create(title, message, duration)
-	task.spawn(function()
-		-- Clone the template and set its text fields
-		local Clone = Template:Clone()
-		Clone.Title.Text = title
-		Clone.Message.Text = message
-		Clone.Parent = script.Parent.Parent.NList
+		function module:Create(title, message, duration)
+			task.spawn(function()
+				-- Clone the template and set its text fields
+				local Clone = Template:Clone()
+				Clone.Title.Text = title
+				Clone.Message.Text = message
+				Clone.Parent = script.Parent.Parent.NList
 
-		-- Play fade-in animations on the cloned instance
-		TS:Create(Clone, TweenInfo.new(.4), {GroupTransparency = 0}):Play()
-		TS:Create(Clone.UIStroke, TweenInfo.new(.4), {Transparency = 0}):Play()
+				-- Play fade-in animations on the cloned instance
+				TS:Create(Clone, TweenInfo.new(.4), {GroupTransparency = 0}):Play()
+				TS:Create(Clone.UIStroke, TweenInfo.new(.4), {Transparency = 0}):Play()
 
-		-- Wait for fade-in to complete
-		wait(.4)
+				-- Wait for fade-in to complete
+				wait(.4)
 
-		-- Wait for the specified duration before starting fade-out
-		wait(duration)
+				-- Wait for the specified duration before starting fade-out
+				wait(duration)
 
-		-- Play fade-out animations on the cloned instance
-		TS:Create(Clone, TweenInfo.new(.4), {GroupTransparency = 1}):Play()
-		TS:Create(Clone.UIStroke, TweenInfo.new(.4), {Transparency = 1}):Play()
+				-- Play fade-out animations on the cloned instance
+				TS:Create(Clone, TweenInfo.new(.4), {GroupTransparency = 1}):Play()
+				TS:Create(Clone.UIStroke, TweenInfo.new(.4), {Transparency = 1}):Play()
 
-		-- Wait for fade-out to complete, then destroy the clone
-		wait(.4)
-		Clone:Destroy()
-	end)
-end
+				-- Wait for fade-out to complete, then destroy the clone
+				wait(.4)
+				Clone:Destroy()
+			end)
+		end
 
-return module
+		return module
 
-end;
+	end;
 };
 G2L_MODULES[G2L["9"]] = {
-Closure = function()
-    local script = G2L["9"];local module = {}
+	Closure = function()
+		local script = G2L["9"];local module = {}
 
-function module:Bypass()
-	local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-	
-	if GameName == "Jailbreak" then
-		print('This AC Destroyer bypasses the systems but breaks them! Beware! Some mechanics will not work anymore!')
-		game:GetService('Players').LocalPlayer.PlayerScripts.LocalScript:Destroy()
-	end
-end
+		function module:Bypass()
+			local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
-return module
-end;
-};
-G2L_MODULES[G2L["a"]] = {
-Closure = function()
-    local script = G2L["a"];local module = {}
-local GrabResponse = false
-local Keys = {
-	"SW-rve8aw3Rd02sflIOQmRCi1Y7WfTxv7Fu", "SW-Yo9RXK7nL5apIE6PGZd5GCtCqSW8PnrJ",
-	"SW-Oo3q7LOhfdNEOxrCzll7Bqjo7PnTV0lR", "SW-r4pWLRHjYXumPXFizS2secCKxYGAhWpE",
-	"SW-x4pDLVJkqZ0Pv4kmCOxtmLKc2G8yZGv1", "SW-QD3fLmvWY3Pn7VBpIEsGmSKDRk8nFXsQ",
-	"SW-Ck2rXLNmjHvQbzla7n5X2h3CRZW4r8xA", "SW-Y74zXGR9K2MvFwb1PIo9RLM8VhsDL7sq",
-	"SW-Hd1nZEkDJn3Oo4vaESmNLFn2qCP8p3TZ", "SW-Lu9oXZNm5FqRIt2QsGOcVJL5GcVKr9sD",
-	"SW-NK6aXFZ1kW5PoEwAsRnXC2ME7WpVHsCx", "SW-Rv3gYK7PLoQ8mz2NkCHzXgBJLW8qFNw5",
-	"SW-Ao5pYH2LkW7PoXsCtSnDLQJM6XqG9RTk", "SW-Mv7sXBrLqN9Qn4y8ZdCmFLJ3TpCw7UoR",
-	"SW-1LsXPlAm2Mn0YXx9fR7u9TCKoQP1ZkFt", "SW-2MvDLNj9YF7vGKm6cWpRM8ChPoW5rXsA",
-	"SW-3OvJLKm2XG8zLNs9cFtVp7YLqQP4vTnF", "SW-4LvVKXm3ZF9yHOq7bRsJL9DhQpV6zAsG",
-	"SW-5OvKRLn4BG0yINr8dUtKM0EjPoX7wYsH", "SW-6LvMLNm5CF1zJPq9eVwMN1FkRqW8xZtJ",
-	"SW-7NvPLQn6EG2yKOs0fWvOP2GlSoX9aUtK", "SW-8OvQLRn7FG3zLPt1gXwQP3HmToX0bVsL",
-	"SW-9PvSLUn8HG4zMQv2hYxRP4InUoY1cWsM", "SW-ALvTLVo9IG5zNRw3iZySP5JoVpY2dXtN",
-	"SW-BMvULWo0JG6zOSx4jAyTQ6KpWpZ3eYuO", "SW-CLvVMPo1KG7zPTy5kByUR7LpXpZ4fZvP",
-	"SW-DNvWNPp2LG8zQUz6lCyVS8MqYpZ5gAwQ", "SW-ELvXPQq3MH9zRV0nAzWT9NrZqZ6hBxR",
-	"SW-FOvYQRr4NI0zSW1oBzXT0OrZqZ7iCyS", "SW-GPvZRSo5OJ1zTX2pCzYU1PrZrZ8jDzT",
-	"SW-HQvASUp6PK2zUY3qDzZV2QrZsZ9kEzU", "SW-IRvBTVp7QL3zVZ4rEzAW3RrZtZ0lFaV",
-	"SW-JSvCUWq8RM4zWZ5sFzBX4SrZtZ1mGbW", "SW-KTvDVXr9SN5zXZ6tGzCY5TrZuZ2nHcX",
-	"SW-LUvEWBp0TO6zYZ7uHzDZ6UrZvZ3oIdY", "SW-MVvFXCq1UP7zZA8vIzE07VtZwZ4pJeZ",
-	"SW-NWvGYCp2VQ8zAB9wJzF18WsZwZ5qKf0", "SW-OVvHZDq3WR9zBC0xKzG29XrZwZ6rLg1",
-	"SW-PXvIAEp4XS0zCD1yLzH3AXsZzZ7sMh2", "SW-QYvJBFr5YT1zDE2zMzI4BYtZzZ8tNi3",
-	"SW-RZvKCGp6ZU2zEF3AMzJ5CZtZzZ9uOj4", "SW-SAvLDHp7AV3zFG4BNzK6DYuZ0Z0vPk5",
-	"SW-TBvMEIq8BW4zGH5COzL7EZvZ1Z1wQl6", "SW-UCvNFJr9CX5zHI6DPzM8FZuZ2Z2xRm7",
-	"SW-VDvOGKr0DY6zIJ7EQzN9GZvZ3Z3ySn8", "SW-WEvPHLs1EZ7zJK8FRzO0HZvZ4Z4zTo9",
-	"SW-XFvQIMr2FA8zKL9GSzP1IZvZ5Z5aUp0", "SW-w3TjVZbBLHlyjRqS2xmseJCxVdPfWsqhG",
-}
-
-function module:Post(key)
-	-- Immediately return true when the correct key is found
-	for _, v in pairs(Keys) do
-		if key == v then
-			GrabResponse = true
-			script.Parent.Parent.Configurations.Key.Value = tostring(key)
-			return -- stop further checking
-		end
-	end
-	-- If no key matches, set GrabResponse to false
-	GrabResponse = false
-end
-
-function module:Get()
-	-- Return the GrabResponse status
-	if GrabResponse ~= nil then
-		return GrabResponse
-	else
-		warn('There is no key checked - GetMethod Key System')
-		return false
-	end
-end
-
-return module
-
-end;
-};
-G2L_MODULES[G2L["b"]] = {
-Closure = function()
-    local script = G2L["b"];local module = {}
-local TextService = game:GetService("TextService")
-local Random = math.random
-
--- Define expanded dynamic vocabulary and responses, including more casual phrases
-local wordChoices = {
-	greetings = {"Hello!", "Hi!", "Hey there!", "Greetings!", "Howdy!", "Hey! Good to see you."},
-	moodResponses = {"I'm feeling fantastic!", "I'm doing great, thanks for asking!", "Just here to assist you.", "Excited to help!", "Ready to dive into whatever you need."},
-	names = {"You can call me AI.", "I'm your assistant here to help.", "I'm your code companion.", "Just think of me as your trusty helper."},
-	farewells = {"Goodbye!", "See you later!", "Take care!", "Bye for now!", "Catch you later!", "Until next time!"},
-	thinkingPhrases = {"Let me think for a moment...", "Hmm, let me process that...", "Thinking that through...", "Give me a second to ponder..."},
-	failureResponses = {"I'm not quite sure what you mean.", "Hmm, can you clarify that for me?", "I'm not following you, can you rephrase?", "Sorry, I didn't catch that."},
-	mathResponses = {"It looks like the answer is", "I've calculated that to be", "The result is", "I crunched the numbers and it's"},
-	casualPhrases = {"Awh mate, what's going on?", "Hey, mate! How's it going?", "Awh, mate, what's new?", "What's up, mate?", "All good here, mate! You?"},
-	additionalResponses = {"Anything else I can help with?", "How about you?", "What are you up to?", "Let me know if there's more!", "Need anything else?", "That reminds me, how are things on your end?"},
-	funResponses = {"That's an interesting thought!", "You got me thinking!", "Wow, cool!", "That made me smile!", "Haha, I love that!", "Good one!", "Nice one!", "That's funny, mate!"},
-	connectWords = {"and", "so", "but", "therefore", "then", "also", "by the way", "plus", "on that note"}
-}
-
--- Function to evaluate a simple math expression safely
-local function evaluateMath(expression)
-	local result = nil
-	local operators = { ["+"] = true, ["-"] = true, ["*"] = true, ["/"] = true }
-
-	local function safeEval(expr)
-		local numbers, operator = expr:match("^(%-?%d+%.?%d*)%s*([%+%-%*/])%s*(%-?%d+%.?%d*)$")
-		if numbers and operators[operator] then
-			local a = tonumber(numbers)
-			local b = tonumber(expr:match("%d+%.?%d*$"))
-			if operator == "+" then
-				return a + b
-			elseif operator == "-" then
-				return a - b
-			elseif operator == "*" then
-				return a * b
-			elseif operator == "/" and b ~= 0 then
-				return a / b
+			if GameName == "Jailbreak" then
+				print('This AC Destroyer bypasses the systems but breaks them! Beware! Some mechanics will not work anymore!')
+				game:GetService('Players').LocalPlayer.PlayerScripts.LocalScript:Destroy()
 			end
 		end
-		return nil
-	end
 
-	result = safeEval(expression)
-	return result
-end
+		return module
+	end;
+};
+G2L_MODULES[G2L["a"]] = {
+	Closure = function()
+		local script = G2L["a"];local module = {}
+		local GrabResponse = false
+		local Keys = {
+			"SW-rve8aw3Rd02sflIOQmRCi1Y7WfTxv7Fu", "SW-Yo9RXK7nL5apIE6PGZd5GCtCqSW8PnrJ",
+			"SW-Oo3q7LOhfdNEOxrCzll7Bqjo7PnTV0lR", "SW-r4pWLRHjYXumPXFizS2secCKxYGAhWpE",
+			"SW-x4pDLVJkqZ0Pv4kmCOxtmLKc2G8yZGv1", "SW-QD3fLmvWY3Pn7VBpIEsGmSKDRk8nFXsQ",
+			"SW-Ck2rXLNmjHvQbzla7n5X2h3CRZW4r8xA", "SW-Y74zXGR9K2MvFwb1PIo9RLM8VhsDL7sq",
+			"SW-Hd1nZEkDJn3Oo4vaESmNLFn2qCP8p3TZ", "SW-Lu9oXZNm5FqRIt2QsGOcVJL5GcVKr9sD",
+			"SW-NK6aXFZ1kW5PoEwAsRnXC2ME7WpVHsCx", "SW-Rv3gYK7PLoQ8mz2NkCHzXgBJLW8qFNw5",
+			"SW-Ao5pYH2LkW7PoXsCtSnDLQJM6XqG9RTk", "SW-Mv7sXBrLqN9Qn4y8ZdCmFLJ3TpCw7UoR",
+			"SW-1LsXPlAm2Mn0YXx9fR7u9TCKoQP1ZkFt", "SW-2MvDLNj9YF7vGKm6cWpRM8ChPoW5rXsA",
+			"SW-3OvJLKm2XG8zLNs9cFtVp7YLqQP4vTnF", "SW-4LvVKXm3ZF9yHOq7bRsJL9DhQpV6zAsG",
+			"SW-5OvKRLn4BG0yINr8dUtKM0EjPoX7wYsH", "SW-6LvMLNm5CF1zJPq9eVwMN1FkRqW8xZtJ",
+			"SW-7NvPLQn6EG2yKOs0fWvOP2GlSoX9aUtK", "SW-8OvQLRn7FG3zLPt1gXwQP3HmToX0bVsL",
+			"SW-9PvSLUn8HG4zMQv2hYxRP4InUoY1cWsM", "SW-ALvTLVo9IG5zNRw3iZySP5JoVpY2dXtN",
+			"SW-BMvULWo0JG6zOSx4jAyTQ6KpWpZ3eYuO", "SW-CLvVMPo1KG7zPTy5kByUR7LpXpZ4fZvP",
+			"SW-DNvWNPp2LG8zQUz6lCyVS8MqYpZ5gAwQ", "SW-ELvXPQq3MH9zRV0nAzWT9NrZqZ6hBxR",
+			"SW-FOvYQRr4NI0zSW1oBzXT0OrZqZ7iCyS", "SW-GPvZRSo5OJ1zTX2pCzYU1PrZrZ8jDzT",
+			"SW-HQvASUp6PK2zUY3qDzZV2QrZsZ9kEzU", "SW-IRvBTVp7QL3zVZ4rEzAW3RrZtZ0lFaV",
+			"SW-JSvCUWq8RM4zWZ5sFzBX4SrZtZ1mGbW", "SW-KTvDVXr9SN5zXZ6tGzCY5TrZuZ2nHcX",
+			"SW-LUvEWBp0TO6zYZ7uHzDZ6UrZvZ3oIdY", "SW-MVvFXCq1UP7zZA8vIzE07VtZwZ4pJeZ",
+			"SW-NWvGYCp2VQ8zAB9wJzF18WsZwZ5qKf0", "SW-OVvHZDq3WR9zBC0xKzG29XrZwZ6rLg1",
+			"SW-PXvIAEp4XS0zCD1yLzH3AXsZzZ7sMh2", "SW-QYvJBFr5YT1zDE2zMzI4BYtZzZ8tNi3",
+			"SW-RZvKCGp6ZU2zEF3AMzJ5CZtZzZ9uOj4", "SW-SAvLDHp7AV3zFG4BNzK6DYuZ0Z0vPk5",
+			"SW-TBvMEIq8BW4zGH5COzL7EZvZ1Z1wQl6", "SW-UCvNFJr9CX5zHI6DPzM8FZuZ2Z2xRm7",
+			"SW-VDvOGKr0DY6zIJ7EQzN9GZvZ3Z3ySn8", "SW-WEvPHLs1EZ7zJK8FRzO0HZvZ4Z4zTo9",
+			"SW-XFvQIMr2FA8zKL9GSzP1IZvZ5Z5aUp0", "SW-w3TjVZbBLHlyjRqS2xmseJCxVdPfWsqhG",
+		}
 
--- Function to adjust the size of UI elements based on text size (expand vertically but limit width)
-local function adjustSize(Extract, response)
-	local font = Enum.Font.SourceSans
-	local textSize = 18
-	local maxAllowedWidth = 250 -- Set a maximum allowed width for the text and frame
-	local padding = 20 -- Padding around the text
-
-	-- Measure the size of the text and constrain the width
-	local textBounds = TextService:GetTextSize(response, textSize, font, Vector2.new(maxAllowedWidth, 10000))
-
-	-- Adjust the size of the TextLabel and its parent frames based on the calculated bounds
-	local totalWidth = math.min(textBounds.X + padding, maxAllowedWidth + padding) -- Constrain width
-	local totalHeight = textBounds.Y + padding -- Dynamically adjust height
-
-	-- Set the sizes to make sure they are consistent
-	Extract.Size = UDim2.new(0, totalWidth, 0, totalHeight)
-	Extract.Main.Size = UDim2.new(0, totalWidth, 0, totalHeight)
-	Extract.Main.ImageLabel.Size = UDim2.new(0, totalWidth, 0, totalHeight)
-	Extract.Main.TextLabel.Size = UDim2.new(0, totalWidth, 0, totalHeight)
-
-	-- Ensure text wrapping and centering are enabled
-	Extract.Main.TextLabel.TextWrapped = true
-	Extract.Main.TextLabel.TextXAlignment = Enum.TextXAlignment.Center -- Center horizontally
-	Extract.Main.TextLabel.TextYAlignment = Enum.TextYAlignment.Center -- Center vertically
-end
-
-
-
--- Function to pick a random word from a list of choices
-local function pickRandom(list)
-	return list[Random(1, #list)]
-end
-
--- Function to build a response dynamically with more sentences and diverse phrases
-local function buildResponse(message)
-	local response = ""
-
-	-- Check for greetings (including "hi")
-	if string.match(string.lower(message), "hello") or string.match(string.lower(message), "hi") then
-		response = pickRandom(wordChoices.greetings) .. " " .. pickRandom(wordChoices.moodResponses)
-
-		-- Add additional mood responses or questions
-		response = response .. " " .. pickRandom(wordChoices.connectWords) .. " " .. pickRandom(wordChoices.additionalResponses)
-
-		-- Check for the AI's name
-	elseif string.match(string.lower(message), "name") then
-		response = pickRandom(wordChoices.names) .. " " .. pickRandom(wordChoices.connectWords) .. " I'm always ready to assist!"
-
-		-- Check for farewell
-	elseif string.match(string.lower(message), "bye") then
-		response = pickRandom(wordChoices.farewells) .. " " .. pickRandom(wordChoices.connectWords) .. " if you need me, just ask."
-
-		-- Check for casual phrases like 'mate'
-	elseif string.match(string.lower(message), "mate") then
-		response = pickRandom(wordChoices.casualPhrases) .. " " .. pickRandom(wordChoices.connectWords) .. " How's everything going with you?"
-
-		-- Check if it's a math expression
-	else
-		local result = evaluateMath(message)
-
-		if result then
-			response = pickRandom(wordChoices.thinkingPhrases) .. " " .. pickRandom(wordChoices.mathResponses) .. ": " .. result
-			response = response .. " " .. pickRandom(wordChoices.connectWords) .. " " .. pickRandom(wordChoices.additionalResponses)
-		else
-			response = pickRandom(wordChoices.failureResponses) .. " " .. pickRandom(wordChoices.connectWords) .. " " .. pickRandom(wordChoices.additionalResponses)
+		function module:Post(key)
+			-- Immediately return true when the correct key is found
+			for _, v in pairs(Keys) do
+				if key == v then
+					GrabResponse = true
+					script.Parent.Parent.Configurations.Key.Value = tostring(key)
+					return -- stop further checking
+				end
+			end
+			-- If no key matches, set GrabResponse to false
+			GrabResponse = false
 		end
-	end
 
-	-- Add a fun or quirky response at the end for more engagement
-	response = response .. " " .. pickRandom(wordChoices.funResponses)
+		function module:Get()
+			-- Return the GrabResponse status
+			if GrabResponse ~= nil then
+				return GrabResponse
+			else
+				warn('There is no key checked - GetMethod Key System')
+				return false
+			end
+		end
 
-	return response
-end
+		return module
 
--- Faster response without heavy delays
-local function humanLikeThinking(message)
-	-- Break down the response generation into smaller parts to simulate "thinking"
-	local fullResponse = ""
-	local parts = buildResponse(message):split(" ")
+	end;
+};
+G2L_MODULES[G2L["b"]] = {
+	Closure = function()
+		local script = G2L["b"];local module = {}
+		local TextService = game:GetService("TextService")
+		local Random = math.random
 
-	-- A minimal delay between words to simulate quick thinking
-	for _, word in ipairs(parts) do
-		fullResponse = fullResponse .. word .. " "
-	end
+		-- Define expanded dynamic vocabulary and responses, including more casual phrases
+		local wordChoices = {
+			greetings = {"Hello!", "Hi!", "Hey there!", "Greetings!", "Howdy!", "Hey! Good to see you."},
+			moodResponses = {"I'm feeling fantastic!", "I'm doing great, thanks for asking!", "Just here to assist you.", "Excited to help!", "Ready to dive into whatever you need."},
+			names = {"You can call me AI.", "I'm your assistant here to help.", "I'm your code companion.", "Just think of me as your trusty helper."},
+			farewells = {"Goodbye!", "See you later!", "Take care!", "Bye for now!", "Catch you later!", "Until next time!"},
+			thinkingPhrases = {"Let me think for a moment...", "Hmm, let me process that...", "Thinking that through...", "Give me a second to ponder..."},
+			failureResponses = {"I'm not quite sure what you mean.", "Hmm, can you clarify that for me?", "I'm not following you, can you rephrase?", "Sorry, I didn't catch that."},
+			mathResponses = {"It looks like the answer is", "I've calculated that to be", "The result is", "I crunched the numbers and it's"},
+			casualPhrases = {"Awh mate, what's going on?", "Hey, mate! How's it going?", "Awh, mate, what's new?", "What's up, mate?", "All good here, mate! You?"},
+			additionalResponses = {"Anything else I can help with?", "How about you?", "What are you up to?", "Let me know if there's more!", "Need anything else?", "That reminds me, how are things on your end?"},
+			funResponses = {"That's an interesting thought!", "You got me thinking!", "Wow, cool!", "That made me smile!", "Haha, I love that!", "Good one!", "Nice one!", "That's funny, mate!"},
+			connectWords = {"and", "so", "but", "therefore", "then", "also", "by the way", "plus", "on that note"}
+		}
 
-	return fullResponse
-end
+		-- Function to evaluate a simple math expression safely
+		local function evaluateMath(expression)
+			local result = nil
+			local operators = { ["+"] = true, ["-"] = true, ["*"] = true, ["/"] = true }
 
-function module:Send(message)
-	local response = humanLikeThinking(message)
+			local function safeEval(expr)
+				local numbers, operator = expr:match("^(%-?%d+%.?%d*)%s*([%+%-%*/])%s*(%-?%d+%.?%d*)$")
+				if numbers and operators[operator] then
+					local a = tonumber(numbers)
+					local b = tonumber(expr:match("%d+%.?%d*$"))
+					if operator == "+" then
+						return a + b
+					elseif operator == "-" then
+						return a - b
+					elseif operator == "*" then
+						return a * b
+					elseif operator == "/" and b ~= 0 then
+						return a / b
+					end
+				end
+				return nil
+			end
 
-	-- Instant typing animation
-	local PlaceHolder = script.Holder:Clone()
-	PlaceHolder.Parent = script.Parent.Parent.Main.ContentProvider.Executor.AI.ScrollingFrame
-	PlaceHolder.Main.TextLabel.Text = "•"
-	task.wait(.1)
-	PlaceHolder.Main.TextLabel.Text = "••"
-	task.wait(.2)
-	PlaceHolder.Main.TextLabel.Text = "•••"
-	task.wait(.3)
-	PlaceHolder:Destroy()
+			result = safeEval(expression)
+			return result
+		end
 
-	-- Create the response UI element instantly
-	local ExactExtract = script.Holder:Clone()
-	ExactExtract.Parent = script.Parent.Parent.Main.ContentProvider.Executor.AI.ScrollingFrame
+		-- Function to adjust the size of UI elements based on text size (expand vertically but limit width)
+		local function adjustSize(Extract, response)
+			local font = Enum.Font.SourceSans
+			local textSize = 18
+			local maxAllowedWidth = 250 -- Set a maximum allowed width for the text and frame
+			local padding = 20 -- Padding around the text
 
-	-- Ensure TextWrapped is enabled and Text is centered
-	if ExactExtract:FindFirstChild("Main") and ExactExtract.Main:FindFirstChild("TextLabel") then
-		ExactExtract.Main.TextLabel.Text = response
-		ExactExtract.Main.TextLabel.TextWrapped = true
-		ExactExtract.Main.TextLabel.TextXAlignment = Enum.TextXAlignment.Center -- Center horizontally
-		ExactExtract.Main.TextLabel.TextYAlignment = Enum.TextYAlignment.Center -- Center vertically
-	else
-		print("Main or TextLabel not found. Structure: ", ExactExtract)
-	end
+			-- Measure the size of the text and constrain the width
+			local textBounds = TextService:GetTextSize(response, textSize, font, Vector2.new(maxAllowedWidth, 10000))
 
-	adjustSize(ExactExtract, response)
-end
+			-- Adjust the size of the TextLabel and its parent frames based on the calculated bounds
+			local totalWidth = math.min(textBounds.X + padding, maxAllowedWidth + padding) -- Constrain width
+			local totalHeight = textBounds.Y + padding -- Dynamically adjust height
+
+			-- Set the sizes to make sure they are consistent
+			Extract.Size = UDim2.new(0, totalWidth, 0, totalHeight)
+			Extract.Main.Size = UDim2.new(0, totalWidth, 0, totalHeight)
+			Extract.Main.ImageLabel.Size = UDim2.new(0, totalWidth, 0, totalHeight)
+			Extract.Main.TextLabel.Size = UDim2.new(0, totalWidth, 0, totalHeight)
+
+			-- Ensure text wrapping and centering are enabled
+			Extract.Main.TextLabel.TextWrapped = true
+			Extract.Main.TextLabel.TextXAlignment = Enum.TextXAlignment.Center -- Center horizontally
+			Extract.Main.TextLabel.TextYAlignment = Enum.TextYAlignment.Center -- Center vertically
+		end
 
 
-return module
 
-end;
+		-- Function to pick a random word from a list of choices
+		local function pickRandom(list)
+			return list[Random(1, #list)]
+		end
+
+		-- Function to build a response dynamically with more sentences and diverse phrases
+		local function buildResponse(message)
+			local response = ""
+
+			-- Check for greetings (including "hi")
+			if string.match(string.lower(message), "hello") or string.match(string.lower(message), "hi") then
+				response = pickRandom(wordChoices.greetings) .. " " .. pickRandom(wordChoices.moodResponses)
+
+				-- Add additional mood responses or questions
+				response = response .. " " .. pickRandom(wordChoices.connectWords) .. " " .. pickRandom(wordChoices.additionalResponses)
+
+				-- Check for the AI's name
+			elseif string.match(string.lower(message), "name") then
+				response = pickRandom(wordChoices.names) .. " " .. pickRandom(wordChoices.connectWords) .. " I'm always ready to assist!"
+
+				-- Check for farewell
+			elseif string.match(string.lower(message), "bye") then
+				response = pickRandom(wordChoices.farewells) .. " " .. pickRandom(wordChoices.connectWords) .. " if you need me, just ask."
+
+				-- Check for casual phrases like 'mate'
+			elseif string.match(string.lower(message), "mate") then
+				response = pickRandom(wordChoices.casualPhrases) .. " " .. pickRandom(wordChoices.connectWords) .. " How's everything going with you?"
+
+				-- Check if it's a math expression
+			else
+				local result = evaluateMath(message)
+
+				if result then
+					response = pickRandom(wordChoices.thinkingPhrases) .. " " .. pickRandom(wordChoices.mathResponses) .. ": " .. result
+					response = response .. " " .. pickRandom(wordChoices.connectWords) .. " " .. pickRandom(wordChoices.additionalResponses)
+				else
+					response = pickRandom(wordChoices.failureResponses) .. " " .. pickRandom(wordChoices.connectWords) .. " " .. pickRandom(wordChoices.additionalResponses)
+				end
+			end
+
+			-- Add a fun or quirky response at the end for more engagement
+			response = response .. " " .. pickRandom(wordChoices.funResponses)
+
+			return response
+		end
+
+		-- Faster response without heavy delays
+		local function humanLikeThinking(message)
+			-- Break down the response generation into smaller parts to simulate "thinking"
+			local fullResponse = ""
+			local parts = buildResponse(message):split(" ")
+
+			-- A minimal delay between words to simulate quick thinking
+			for _, word in ipairs(parts) do
+				fullResponse = fullResponse .. word .. " "
+			end
+
+			return fullResponse
+		end
+
+		function module:Send(message)
+			local response = humanLikeThinking(message)
+
+			-- Instant typing animation
+			local PlaceHolder = script.Holder:Clone()
+			PlaceHolder.Parent = script.Parent.Parent.Main.ContentProvider.Executor.AI.ScrollingFrame
+			PlaceHolder.Main.TextLabel.Text = "•"
+			task.wait(.1)
+			PlaceHolder.Main.TextLabel.Text = "••"
+			task.wait(.2)
+			PlaceHolder.Main.TextLabel.Text = "•••"
+			task.wait(.3)
+			PlaceHolder:Destroy()
+
+			-- Create the response UI element instantly
+			local ExactExtract = script.Holder:Clone()
+			ExactExtract.Parent = script.Parent.Parent.Main.ContentProvider.Executor.AI.ScrollingFrame
+
+			-- Ensure TextWrapped is enabled and Text is centered
+			if ExactExtract:FindFirstChild("Main") and ExactExtract.Main:FindFirstChild("TextLabel") then
+				ExactExtract.Main.TextLabel.Text = response
+				ExactExtract.Main.TextLabel.TextWrapped = true
+				ExactExtract.Main.TextLabel.TextXAlignment = Enum.TextXAlignment.Center -- Center horizontally
+				ExactExtract.Main.TextLabel.TextYAlignment = Enum.TextYAlignment.Center -- Center vertically
+			else
+				print("Main or TextLabel not found. Structure: ", ExactExtract)
+			end
+
+			adjustSize(ExactExtract, response)
+		end
+
+
+		return module
+
+	end;
 };
 G2L_MODULES[G2L["14"]] = {
-Closure = function()
-    local script = G2L["14"];local module = {}
-local MPS = game:GetService('MarketplaceService')
+	Closure = function()
+		local script = G2L["14"];local module = {}
+		local MPS = game:GetService('MarketplaceService')
 
-function module:GetPremium()
-	if MPS:UserOwnsGamePassAsync(game:GetService('Players').LocalPlayer.UserId, 949226715) then
-		return true
-	else
-		return false
-	end
-end
+		function module:GetPremium()
+			if MPS:UserOwnsGamePassAsync(game:GetService('Players').LocalPlayer.UserId, 949226715) then
+				return true
+			else
+				return false
+			end
+		end
 
-if module:GetPremium() then
-	script.Parent.Parent.Main.KeySystem.Visible = false
-end
+		if module:GetPremium() then
+			script.Parent.Parent.Main.KeySystem.Visible = false
+		end
 
-return module
-end;
+		return module
+	end;
 };
 -- StarterGui.SSWorks.Main.Topbar.ImageButton.LocalScript
 local function C_1b()
-local script = G2L["1b"];
+	local script = G2L["1b"];
 	local Value = script.Parent.Parent.Parent.Parent.isOpen
 	local TS = game:GetService('TweenService')
-	
+
 	script.Parent.Activated:Connect(function()
 		TS:Create(script.Parent.Parent.Parent.Parent.Main, TweenInfo.new(.4), {GroupTransparency = 1}):Play()
 		wait(.4)
@@ -4546,22 +4598,22 @@ end;
 task.spawn(C_1b);
 -- StarterGui.SSWorks.Main.KeySystem.Manager
 local function C_29()
-local script = G2L["29"];
+	local script = G2L["29"];
 	local NotifyAPI = require(script.Parent.Parent.Parent.Modules.NotificationAPI)
 	local Box = script.Parent.InputBox
 	local Submit = script.Parent.TextButton
 	local KSAPI = require(script.Parent.Parent.Parent.Modules.KeyAPI)
-	
+
 	Submit.Activated:Connect(function()
 		-- Get the user input from the InputBox and check it using Post
 		KSAPI:Post(Box.Text)
-	
+
 		-- Wait 1 second (simulate delay)
 		task.wait(1)
-	
+
 		-- Retrieve the response from the API module
 		local GetMethod = KSAPI:Get()
-	
+
 		-- If the key is correct, display a notification
 		if GetMethod == true then
 			NotifyAPI:Create('Key', "The Key is correct", 3)
@@ -4570,12 +4622,12 @@ local script = G2L["29"];
 			NotifyAPI:Create('Key', "The Key is incorrect", 3) -- Add feedback for incorrect key
 		end
 	end)
-	
+
 end;
 task.spawn(C_29);
 -- StarterGui.SSWorks.Main.KeySystem.UpdLogBtn.LocalScript
 local function C_2d()
-local script = G2L["2d"];
+	local script = G2L["2d"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Parent.UpdateLogs.Visible = true
 	end)
@@ -4583,11 +4635,11 @@ end;
 task.spawn(C_2d);
 -- StarterGui.SSWorks.Main.Menu.Button.ExecButton.LocalScript
 local function C_35()
-local script = G2L["35"];
+	local script = G2L["35"];
 	local TS = game:GetService('TweenService')
 	local Indicator = script.Parent.Indicator
 	local ContentProvider = script.Parent.Parent.Parent.Parent.ContentProvider
-	
+
 	script.Parent.Activated:Connect(function()
 		for _,v in pairs(ContentProvider:GetChildren()) do
 			if v:IsA('Frame') then
@@ -4595,24 +4647,24 @@ local script = G2L["35"];
 				ContentProvider:FindFirstChild("Executor").Visible = true
 			end
 		end
-		
+
 		for _,v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('ImageButton') then
 				TS:Create(v.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 1}):Play()
 			end
 		end
-		
+
 		TS:Create(script.Parent.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 0}):Play()
 	end)
 end;
 task.spawn(C_35);
 -- StarterGui.SSWorks.Main.Menu.Button.ScriptButton.LocalScript
 local function C_3a()
-local script = G2L["3a"];
+	local script = G2L["3a"];
 	local TS = game:GetService('TweenService')
 	local Indicator = script.Parent.Indicator
 	local ContentProvider = script.Parent.Parent.Parent.Parent.ContentProvider
-	
+
 	script.Parent.Activated:Connect(function()
 		for _,v in pairs(ContentProvider:GetChildren()) do
 			if v:IsA('Frame') then
@@ -4620,24 +4672,24 @@ local script = G2L["3a"];
 				ContentProvider:FindFirstChild("ScriptHub").Visible = true
 			end
 		end
-		
+
 		for _,v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('ImageButton') then
 				TS:Create(v.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 1}):Play()
 			end
 		end
-		
+
 		TS:Create(script.Parent.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 0}):Play()
 	end)
 end;
 task.spawn(C_3a);
 -- StarterGui.SSWorks.Main.Menu.Button.SettingButton.LocalScript
 local function C_3f()
-local script = G2L["3f"];
+	local script = G2L["3f"];
 	local TS = game:GetService('TweenService')
 	local Indicator = script.Parent.Indicator
 	local ContentProvider = script.Parent.Parent.Parent.Parent.ContentProvider
-	
+
 	script.Parent.Activated:Connect(function()
 		for _,v in pairs(ContentProvider:GetChildren()) do
 			if v:IsA('Frame') then
@@ -4645,24 +4697,24 @@ local script = G2L["3f"];
 				ContentProvider:FindFirstChild("Settings").Visible = true
 			end
 		end
-		
+
 		for _,v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('ImageButton') then
 				TS:Create(v.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 1}):Play()
 			end
 		end
-		
+
 		TS:Create(script.Parent.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 0}):Play()
 	end)
 end;
 task.spawn(C_3f);
 -- StarterGui.SSWorks.Main.Menu.Button.ExternalButton.LocalScript
 local function C_44()
-local script = G2L["44"];
+	local script = G2L["44"];
 	local TS = game:GetService('TweenService')
 	local Indicator = script.Parent.Indicator
 	local ContentProvider = script.Parent.Parent.Parent.Parent.ContentProvider
-	
+
 	script.Parent.Activated:Connect(function()
 		for _,v in pairs(ContentProvider:GetChildren()) do
 			if v:IsA('Frame') then
@@ -4670,34 +4722,34 @@ local script = G2L["44"];
 				ContentProvider:FindFirstChild("External").Visible = true
 			end
 		end
-		
+
 		for _,v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('ImageButton') then
 				TS:Create(v.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 1}):Play()
 			end
 		end
-		
+
 		TS:Create(script.Parent.Indicator, TweenInfo.new(.4), {BackgroundTransparency = 0}):Play()
 	end)
 end;
 task.spawn(C_44);
 -- StarterGui.SSWorks.Main.SmoothDrag
 local function C_45()
-local script = G2L["45"];
+	local script = G2L["45"];
 	local UserInputService = game:GetService("UserInputService")
 	local runService = (game:GetService("RunService"));
-	
+
 	local gui = script.Parent
-	
+
 	local dragging
 	local dragInput
 	local dragStart
 	local startPos
-	
+
 	function Lerp(a, b, m)
 		return a + (b - a) * m
 	end;
-	
+
 	local lastMousePos
 	local lastGoalPos
 	local DRAG_SPEED = (8); -- // The speed of the UI darg.
@@ -4707,21 +4759,21 @@ local script = G2L["45"];
 			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
 			return 
 		end;
-	
+
 		local delta = (lastMousePos - UserInputService:GetMouseLocation())
 		local xGoal = (startPos.X.Offset - delta.X);
 		local yGoal = (startPos.Y.Offset - delta.Y);
 		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
 		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
 	end;
-	
+
 	gui.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
 			dragStart = input.Position
 			startPos = gui.Position
 			lastMousePos = UserInputService:GetMouseLocation()
-	
+
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
@@ -4729,19 +4781,19 @@ local script = G2L["45"];
 			end)
 		end
 	end)
-	
+
 	gui.InputChanged:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 			dragInput = input
 		end
 	end)
-	
+
 	runService.Heartbeat:Connect(Update)
 end;
 task.spawn(C_45);
 -- StarterGui.SSWorks.Main.UpdateLogs.Poll.Vote.LocalScript
 local function C_5d()
-local script = G2L["5d"];
+	local script = G2L["5d"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Exclude.UIStroke.Transparency = 1
 		script.Parent.UIStroke.Transparency = 0
@@ -4750,7 +4802,7 @@ end;
 task.spawn(C_5d);
 -- StarterGui.SSWorks.Main.UpdateLogs.Poll.Exclude.LocalScript
 local function C_63()
-local script = G2L["63"];
+	local script = G2L["63"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Vote.UIStroke.Transparency = 1
 		script.Parent.UIStroke.Transparency = 0
@@ -4759,7 +4811,7 @@ end;
 task.spawn(C_63);
 -- StarterGui.SSWorks.Main.UpdateLogs.ImageButton.LocalScript
 local function C_65()
-local script = G2L["65"];
+	local script = G2L["65"];
 	script.Parent.Activated:Connect(function()
 		if script.Parent.Parent.Parent.Parent.Configurations.Key.Value ~= "" then
 			script.Parent.Parent.Visible = false
@@ -4776,12 +4828,12 @@ end;
 task.spawn(C_65);
 -- StarterGui.SSWorks.Main.ContentProvider.Executor.AI.Input.Manager
 local function C_76()
-local script = G2L["76"];
+	local script = G2L["76"];
 	local AIModule = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Modules.AIModule)
 	local NotifyModule = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local TextBox = script.Parent.TextBox
 	local Button = script.Parent.ImageButton
-	
+
 	function Activate()
 		if TextBox.Text ~= nil then
 			task.spawn(function()
@@ -4792,16 +4844,16 @@ local script = G2L["76"];
 			NotifyModule:Create("AI", "Could get nil as an response", 5)
 		end
 	end
-	
+
 	TextBox.FocusLost:Connect(Activate)
 	Button.Activated:Connect(Activate)
 end;
 task.spawn(C_76);
 -- StarterGui.SSWorks.Main.ContentProvider.Executor.Options.Execute.LocalScript
 local function C_7a()
-local script = G2L["7a"];
+	local script = G2L["7a"];
 	local textBox = script.Parent.Parent.Parent.CurrentTab
-	
+
 	script.Parent.Activated:Connect(function()
 		loadstring(textBox.Value.Text)()
 	end)
@@ -4809,9 +4861,9 @@ end;
 task.spawn(C_7a);
 -- StarterGui.SSWorks.Main.ContentProvider.Executor.Options.Clear.LocalScript
 local function C_7c()
-local script = G2L["7c"];
+	local script = G2L["7c"];
 	local textBox = script.Parent.Parent.Parent.CurrentTab
-	
+
 	script.Parent.Activated:Connect(function()
 		textBox.Value.Text = ""
 	end)
@@ -4819,45 +4871,45 @@ end;
 task.spawn(C_7c);
 -- StarterGui.SSWorks.Main.ContentProvider.Executor.Tabs.TabManager
 local function C_83()
-local script = G2L["83"];
+	local script = G2L["83"];
 	local TabCount = 0
 	local Tabs = script.Parent
 	local TabsHolder = script.Parent.Parent.TabHolder
 	local currentActiveTab = script.Parent.Parent.CurrentTab  -- Start with no active tab initially
 	local PreviousTab = nil
-	
+
 	-- Create a new tab
 	function createTab()
 		TabCount += 1
-	
+
 		-- Clone the tab template and set its properties
 		local CloneTabTemplate = script.Tab0:Clone()
 		CloneTabTemplate.TextLabel.Text = "Tab #" .. TabCount
 		CloneTabTemplate.Name = "Tab" .. TabCount
-	
+
 		-- Clone the content tab and set its properties
 		local ClonedTextTab = TabsHolder.Tab0:Clone()
 		ClonedTextTab.Name = "TabContent" .. TabCount
 		ClonedTextTab.Visible = false -- Initially hidden
 		ClonedTextTab.Parent = TabsHolder -- Add to the TabsHolder
-	
+
 		-- Connect the Close button to remove the tab
 		CloneTabTemplate.Close.Activated:Connect(function()
 			removeTab(CloneTabTemplate, ClonedTextTab)
 		end)
-	
+
 		-- Connect the TextButton to select this tab
 		CloneTabTemplate.TextButton.Activated:Connect(function()
 			selectTab(ClonedTextTab)
 		end)
-	
+
 		-- Add the newly created tab to the Tabs frame
 		CloneTabTemplate.Parent = Tabs
-	
+
 		-- Automatically select the newly created tab
 		selectTab(ClonedTextTab)
 	end
-	
+
 	-- Select a tab and show its content
 	function selectTab(tabToSelect)
 		-- Hide all other tabs' content
@@ -4866,7 +4918,7 @@ local script = G2L["83"];
 				v.Visible = false
 			end
 		end
-	
+
 		-- Set the new active tab and show its content
 		if currentActiveTab.Value then
 			PreviousTab = currentActiveTab.Value -- Store the current tab as the previous one
@@ -4874,15 +4926,15 @@ local script = G2L["83"];
 		currentActiveTab.Value = tabToSelect
 		currentActiveTab.Value.Visible = true
 	end
-	
+
 	-- Remove a tab and handle active tab switching
 	function removeTab(tabButton, tabContent)
 		-- Destroy the tab button and content
 		tabButton:Destroy()
 		tabContent:Destroy()
-	
+
 		TabCount -= 1 -- Update the tab count
-	
+
 		-- Handle switching to another tab (either previous or the first one)
 		if TabCount > 0 then
 			if PreviousTab and PreviousTab.Parent then
@@ -4900,20 +4952,20 @@ local script = G2L["83"];
 			currentActiveTab.Value = nil -- Reset the active tab if no tabs are left
 		end
 	end
-	
+
 	-- Create the initial tab when the script runs
 	createTab()
-	
+
 	-- Connect the "Add Tab" button to create new tabs
 	script.Parent.Parent.Options.Tab.Activated:Connect(createTab)
 end;
 task.spawn(C_83);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.Manager
 local function C_90()
-local script = G2L["90"];
+	local script = G2L["90"];
 	local searchBar = script.Parent.Box.TextBox
 	local items = script.Parent.Value.Value.ScrollingFrame
-	
+
 	function updateResults()
 		local search = string.lower(searchBar.Text)
 		for i,v in pairs(items:GetChildren()) do
@@ -4931,42 +4983,42 @@ local script = G2L["90"];
 			end
 		end
 	end
-	
+
 	game:GetService('UserInputService').InputBegan:Connect(function(input, isTyping)
 		if isTyping then return end
-		
+
 		if input.KeyCode == Enum.KeyCode.Z then
 			if searchBar.Text ~= "" then
 				updateResults()
 			end
 		end
 	end)
-	
+
 	searchBar.Changed:Connect(updateResults)
 end;
 task.spawn(C_90);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.controlPage.PagesManager
 local function C_9e()
-local script = G2L["9e"];
+	local script = G2L["9e"];
 	local IncreaseButton = script.Parent.IncreasePage.ImageButton
 	local DecreaseButton = script.Parent.DecreasePage.ImageButton
 	local PageCountDisplay = script.Parent.PageCount.TextLabel
 	local PagesFolder = script.Parent.Parent.Pages
 	local PageCount = #PagesFolder:GetChildren()
 	local Count = 1
-	
+
 	local NotifyModule = require(script.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
-	
+
 	function updateCount()
 		PageCountDisplay.Text = Count.." / "..PageCount
 	end
-	
+
 	function pageVisibility()
 		-- Set all pages to invisible
 		for _,v in pairs(PagesFolder:GetChildren()) do
 			v.Visible = false
 		end
-	
+
 		-- Show the correct page based on Count
 		local currentPage = PagesFolder:FindFirstChild('Page' .. Count)
 		if currentPage then
@@ -4974,7 +5026,7 @@ local script = G2L["9e"];
 			script.Parent.Parent.Value.Value = currentPage
 		end
 	end
-	
+
 	IncreaseButton.Activated:Connect(function()
 		-- Increment Count but ensure it doesn't exceed PageCount
 		if Count < PageCount then
@@ -4983,7 +5035,7 @@ local script = G2L["9e"];
 		updateCount()
 		pageVisibility()
 	end)
-	
+
 	DecreaseButton.Activated:Connect(function()
 		-- Decrement Count but ensure it doesn't go below 1
 		if Count > 1 then
@@ -4992,16 +5044,16 @@ local script = G2L["9e"];
 		updateCount()
 		pageVisibility()
 	end)
-	
+
 	-- Initial setup
 	updateCount()
 	pageVisibility()
-	
+
 end;
 task.spawn(C_9e);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.Pages.Page1.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_ab()
-local script = G2L["ab"];
+	local script = G2L["ab"];
 	script.Parent.Activated:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end)
@@ -5009,7 +5061,7 @@ end;
 task.spawn(C_ab);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.Pages.Page1.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_b9()
-local script = G2L["b9"];
+	local script = G2L["b9"];
 	script.Parent.Activated:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end)
@@ -5017,7 +5069,7 @@ end;
 task.spawn(C_b9);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.Pages.Page1.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_c7()
-local script = G2L["c7"];
+	local script = G2L["c7"];
 	script.Parent.Activated:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end)
@@ -5025,7 +5077,7 @@ end;
 task.spawn(C_c7);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.Pages.Page1.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_d5()
-local script = G2L["d5"];
+	local script = G2L["d5"];
 	script.Parent.Activated:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end)
@@ -5033,7 +5085,7 @@ end;
 task.spawn(C_d5);
 -- StarterGui.SSWorks.Main.ContentProvider.ScriptHub.Pages.Page2.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_e5()
-local script = G2L["e5"];
+	local script = G2L["e5"];
 	script.Parent.Activated:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end)
@@ -5041,11 +5093,11 @@ end;
 task.spawn(C_e5);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_f4()
-local script = G2L["f4"];
+	local script = G2L["f4"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local TS = game:GetService('TweenService')
 	local isOn = false
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
 		if isOn == true then
@@ -5072,20 +5124,20 @@ end;
 task.spawn(C_f4);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.TextButton.LocalScript
 local function C_fb()
-local script = G2L["fb"];
+	local script = G2L["fb"];
 	local isChosen = false
-	
+
 	script.Parent.Activated:Connect(function()
 		-- Toggle the selected state
 		isChosen = not isChosen
-	
+
 		-- Loop through all GUI buttons in the same parent to reset their colors
 		for _, v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('GuiButton') then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Reset color of all buttons
 			end
 		end
-	
+
 		if isChosen then
 			-- Change background color of the selected button and set SelectedValue
 			script.Parent.BackgroundColor3 = Color3.fromRGB(29, 61, 109)
@@ -5097,25 +5149,25 @@ local script = G2L["fb"];
 			isChosen = false
 		end
 	end)
-	
+
 end;
 task.spawn(C_fb);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.TextButton.LocalScript
 local function C_ff()
-local script = G2L["ff"];
+	local script = G2L["ff"];
 	local isChosen = false
-	
+
 	script.Parent.Activated:Connect(function()
 		-- Toggle the selected state
 		isChosen = not isChosen
-	
+
 		-- Loop through all GUI buttons in the same parent to reset their colors
 		for _, v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('GuiButton') then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Reset color of all buttons
 			end
 		end
-	
+
 		if isChosen then
 			-- Change background color of the selected button and set SelectedValue
 			script.Parent.BackgroundColor3 = Color3.fromRGB(29, 61, 109)
@@ -5127,25 +5179,25 @@ local script = G2L["ff"];
 			isChosen = false
 		end
 	end)
-	
+
 end;
 task.spawn(C_ff);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.TextButton.LocalScript
 local function C_102()
-local script = G2L["102"];
+	local script = G2L["102"];
 	local isChosen = false
-	
+
 	script.Parent.Activated:Connect(function()
 		-- Toggle the selected state
 		isChosen = not isChosen
-	
+
 		-- Loop through all GUI buttons in the same parent to reset their colors
 		for _, v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('GuiButton') then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Reset color of all buttons
 			end
 		end
-	
+
 		if isChosen then
 			-- Change background color of the selected button and set SelectedValue
 			script.Parent.BackgroundColor3 = Color3.fromRGB(29, 61, 109)
@@ -5157,12 +5209,12 @@ local script = G2L["102"];
 			isChosen = false
 		end
 	end)
-	
+
 end;
 task.spawn(C_102);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.TextBox.LocalScript
 local function C_105()
-local script = G2L["105"];
+	local script = G2L["105"];
 	script.Parent.FocusLost:Connect(function()
 		script.Parent.Parent.Parent.SelectedValue.Value = script.Parent.Text
 	end)
@@ -5170,7 +5222,7 @@ end;
 task.spawn(C_105);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_108()
-local script = G2L["108"];
+	local script = G2L["108"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Dropdown.Visible = not script.Parent.Parent.Dropdown.Visible
 		if script.Parent.Parent.Dropdown.ZIndex == 1 then
@@ -5183,9 +5235,9 @@ end;
 task.spawn(C_108);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.ScrollingFrame.Frame.TextBox.LocalScript
 local function C_117()
-local script = G2L["117"];
+	local script = G2L["117"];
 	local Config = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations
-	
+
 	script.Parent.FocusLost:Connect(function()
 		Config["AimAssistSmoothness"].Value = script.Parent.Text
 	end)
@@ -5193,9 +5245,9 @@ end;
 task.spawn(C_117);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.ScrollingFrame.Frame.TextBox.LocalScript
 local function C_11d()
-local script = G2L["11d"];
+	local script = G2L["11d"];
 	local Config = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations
-	
+
 	script.Parent.FocusLost:Connect(function()
 		Config["AimAssistPart"].Value = script.Parent.Text
 	end)
@@ -5203,9 +5255,9 @@ end;
 task.spawn(C_11d);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.ScrollingFrame.Frame.TextBox.LocalScript
 local function C_123()
-local script = G2L["123"];
+	local script = G2L["123"];
 	local AimAssistColor = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.AimAssistFrame
-	
+
 	script.Parent.FocusLost:Connect(function()
 		if script.Parent.Text == "Red" then
 			AimAssistColor.UIStroke.Color = Color3.fromRGB(255, 139, 139)
@@ -5225,9 +5277,9 @@ end;
 task.spawn(C_123);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.ScrollingFrame.Frame.TextBox.LocalScript
 local function C_129()
-local script = G2L["129"];
+	local script = G2L["129"];
 	local Config = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations
-	
+
 	script.Parent.FocusLost:Connect(function()
 		if script.Parent.Text == "Hold" then
 			Config["AATrigger"].Value = "Hold"
@@ -5245,9 +5297,9 @@ end;
 task.spawn(C_129);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.ScrollingFrame.Frame.TextBox.LocalScript
 local function C_12f()
-local script = G2L["12f"];
+	local script = G2L["12f"];
 	local Config = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations
-	
+
 	script.Parent.FocusLost:Connect(function()
 		if script.Parent.Text == "MouseButton1" then
 			Config["AAKeyHoldMethod"].Value = "MouseButton1"
@@ -5265,7 +5317,7 @@ end;
 task.spawn(C_12f);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_133()
-local script = G2L["133"];
+	local script = G2L["133"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Dropdown.Visible = not script.Parent.Parent.Dropdown.Visible
 		if script.Parent.Parent.ZIndex ~= 2 then
@@ -5278,10 +5330,10 @@ end;
 task.spawn(C_133);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.Frame.TextButton.LocalScript
 local function C_13f()
-local script = G2L["13f"];
+	local script = G2L["13f"];
 	local isChosen = false
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
-	
+
 	script.Parent.Activated:Connect(function()
 		NotifyService:Create('Key Configuration', "Prompt was shown.", 3)
 		script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.KeyConfig.ChangeKey.Visible = true
@@ -5290,19 +5342,19 @@ end;
 task.spawn(C_13f);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.Dropdown.Frame.TextButton.LocalScript
 local function C_146()
-local script = G2L["146"];
+	local script = G2L["146"];
 	local isChosen = false
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local Players = game:GetService("Players")
 	local MarketplaceService = game:GetService("MarketplaceService")
 	local TeleportService = game:GetService("TeleportService")
 	local isAvalible = false
-	
+
 	script.Parent.Activated:Connect(function()
 		if isAvalible then
 			-- Show the notification
 			NotifyService:Create('Buy Premium', "Prompt was shown.", 3)
-	
+
 			-- Check if player is in the specific game place
 			if game.PlaceId == 107008868220828 then
 				-- Prompt Game Pass purchase for the player
@@ -5315,7 +5367,7 @@ local script = G2L["146"];
 				local success, err = pcall(function()
 					TeleportService:TeleportAsync(107008868220828, {Players.LocalPlayer})
 				end)
-	
+
 				if not success then
 					-- Optional: handle teleportation failure
 					NotifyService:Create('Error', err, 5)
@@ -5325,12 +5377,12 @@ local script = G2L["146"];
 			NotifyService:Create("Premium", "Feature is currently in development", 3)
 		end
 	end)
-	
+
 end;
 task.spawn(C_146);
 -- StarterGui.SSWorks.Main.ContentProvider.Settings.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_14a()
-local script = G2L["14a"];
+	local script = G2L["14a"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Dropdown.Visible = not script.Parent.Parent.Dropdown.Visible
 		if script.Parent.Parent.ZIndex ~= 2 then
@@ -5343,11 +5395,11 @@ end;
 task.spawn(C_14a);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_154()
-local script = G2L["154"];
+	local script = G2L["154"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local TS = game:GetService('TweenService')
 	local isOn = false
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
 		if isOn == true then
@@ -5376,11 +5428,11 @@ end;
 task.spawn(C_154);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_15b()
-local script = G2L["15b"];
+	local script = G2L["15b"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local TS = game:GetService('TweenService')
 	local isOn = false
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
 		if isOn == true then
@@ -5396,12 +5448,12 @@ end;
 task.spawn(C_15b);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_162()
-local script = G2L["162"];
+	local script = G2L["162"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local BypassService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.BModule)
 	local TS = game:GetService('TweenService')
 	local isOn = false
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
 		if isOn == true then
@@ -5416,16 +5468,16 @@ end;
 task.spawn(C_162);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_169()
-local script = G2L["169"];
+	local script = G2L["169"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local BypassService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.BModule)
 	local TS = game:GetService('TweenService')
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
-	
+
 	local player = Players.LocalPlayer
 	local camera = workspace.CurrentCamera
-	
+
 	-- Configuration variables
 	local Config = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations
 	local ActivationMethod = Config.AATrigger
@@ -5434,45 +5486,45 @@ local script = G2L["169"];
 	local targetPart = Config.AimAssistPart.Value        -- Part of the enemy to aim at
 	local aimUI = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.AimAssistFrame  -- UI frame (crosshair/reticle)
 	local isHold = false
-	
+
 	local isOn = false
 	local currentTarget = nil  -- Variable to keep track of the current target
-	
+
 	-- Update aim assist configurations based on the Config values
 	RunService.Heartbeat:Connect(function()
 		aimAssistSmoothness = Config.AimAssistSmoothness.Value
 		targetPart = Config.AimAssistPart.Value
 	end)
-	
+
 	-- Function to check if a world position is within the aim UI
 	local function isInAimUI(worldPosition)
 		local screenPoint, onScreen = camera:WorldToViewportPoint(worldPosition)
-	
+
 		if onScreen then
 			local uiPosition = aimUI.AbsolutePosition
 			local uiSize = aimUI.AbsoluteSize
-	
+
 			-- Check if the screen point falls inside the aim UI
 			return screenPoint.X > uiPosition.X and screenPoint.X < (uiPosition.X + uiSize.X) and
 				screenPoint.Y > uiPosition.Y and screenPoint.Y < (uiPosition.Y + uiSize.Y)
 		end
 		return false
 	end
-	
+
 	-- Function to find the closest enemy that is valid for targeting
 	local function findTargetInAimUI()
 		local closestTarget = nil
 		local closestDistance = math.huge  -- Start with a large distance
-	
+
 		for _, targetPlayer in pairs(Players:GetPlayers()) do
 			if targetPlayer ~= player then
 				local character = targetPlayer.Character
 				if character then
 					local humanoidRootPart = character:FindFirstChild(targetPart)
-	
+
 					if humanoidRootPart and isInAimUI(humanoidRootPart.Position) then
 						local distance = (humanoidRootPart.Position - camera.CFrame.Position).Magnitude
-	
+
 						-- Determine the closest target
 						if distance < closestDistance then
 							closestDistance = distance
@@ -5484,34 +5536,34 @@ local script = G2L["169"];
 		end
 		return closestTarget
 	end
-	
+
 	-- Function to aim at the current target
 	local function aimAtTarget(target)
 		if target then
 			local targetPosition = target.Position + Vector3.new(0, 0, 0)  -- Adjust aim to be slightly above
 			local direction = (targetPosition - camera.CFrame.Position).unit
 			local targetCFrame = CFrame.new(camera.CFrame.Position, camera.CFrame.Position + direction)
-	
+
 			-- Smoothly adjust the aim toward the enemy
 			camera.CFrame = camera.CFrame:Lerp(targetCFrame, aimAssistSmoothness)
 		end
 	end
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
-	
+
 		if isOn then
 			TS:Create(script.Parent, TweenInfo.new(0.5), {BackgroundColor3 = Color3.fromRGB(51, 160, 255)}):Play()
 			NotifyService:Create('External', "AimAssist was triggered", 3)
 			aimUI.Visible = true
-	
+
 			-- Continuously update the target and aim
 			RunService.Heartbeat:Connect(function()
 				if ActivationMethod.Value == "Activate" then
 					if isOn then
 						-- Find a new target
 						local newTarget = findTargetInAimUI()
-	
+
 						-- Reset currentTarget if the new target is nil
 						if not newTarget then
 							currentTarget = nil
@@ -5521,7 +5573,7 @@ local script = G2L["169"];
 								currentTarget = newTarget  -- Update the current target
 							end
 						end
-	
+
 						-- Aim at the current target if it exists
 						if currentTarget then
 							local getT = Players:GetPlayerFromCharacter(currentTarget.Parent)
@@ -5539,7 +5591,7 @@ local script = G2L["169"];
 					if isHold then
 						-- Find a new target
 						local newTarget = findTargetInAimUI()
-	
+
 						-- Reset currentTarget if the new target is nil
 						if not newTarget then
 							currentTarget = nil
@@ -5549,7 +5601,7 @@ local script = G2L["169"];
 								currentTarget = newTarget  -- Update the current target
 							end
 						end
-	
+
 						-- Aim at the current target if it exists
 						if currentTarget then
 							local getT = Players:GetPlayerFromCharacter(currentTarget.Parent)
@@ -5573,9 +5625,9 @@ local script = G2L["169"];
 			currentTarget = nil  -- Reset the current target when disabled
 		end
 	end)
-	
+
 	local UserInputService = game:GetService('UserInputService')
-	
+
 	UserInputService.InputBegan:Connect(function(input)
 		if AAKeyHoldMethod.Value == "MouseButton1" then
 			if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -5587,7 +5639,7 @@ local script = G2L["169"];
 			end
 		end
 	end)
-	
+
 	UserInputService.InputEnded:Connect(function(input)
 		if AAKeyHoldMethod.Value == "MouseButton1" then
 			if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -5599,27 +5651,27 @@ local script = G2L["169"];
 			end
 		end
 	end)
-	
+
 end;
 task.spawn(C_169);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_170()
-local script = G2L["170"];
+	local script = G2L["170"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local ESP = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Resources.ESP
 	local TS = game:GetService('TweenService')
 	local RunService = game:GetService("RunService")
 	local Players = game:GetService("Players")
-	
+
 	local isOn = false
 	local espConnection
-	
+
 	-- Function to toggle ESP for all players
 	local function toggleESP(state)
 		for _, player in pairs(Players:GetPlayers()) do
 			if player.Character then
 				local espInstance = player.Character:FindFirstChild("ESP")
-	
+
 				if state then
 					-- Add ESP if it doesn't exist
 					if not espInstance then
@@ -5634,18 +5686,18 @@ local script = G2L["170"];
 			end
 		end
 	end
-	
+
 	-- Heartbeat connection, only set once
 	espConnection = RunService.Heartbeat:Connect(function()
 		if isOn then
 			toggleESP(true)
 		end
 	end)
-	
+
 	-- Button activation logic
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
-	
+
 		-- Tween effect for button color
 		if isOn then
 			TS:Create(script.Parent, TweenInfo.new(.5), {BackgroundColor3 = Color3.fromRGB(51, 160, 255)}):Play()
@@ -5655,16 +5707,16 @@ local script = G2L["170"];
 			toggleESP(false) -- Remove ESP from all players when turned off
 		end
 	end)
-	
+
 end;
 task.spawn(C_170);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_177()
-local script = G2L["177"];
+	local script = G2L["177"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local TS = game:GetService('TweenService')
 	local isOn = false
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
 		if isOn == true then
@@ -5710,37 +5762,37 @@ local script = G2L["177"];
 			end
 		end
 	end)
-	
+
 end;
 task.spawn(C_177);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.TextButton.LocalScript
 local function C_17e()
-local script = G2L["17e"];
+	local script = G2L["17e"];
 	local NotifyService = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Modules.NotificationAPI)
 	local TS = game:GetService('TweenService')
 	local Players = game:GetService('Players')
 	local RunService = game:GetService("RunService")
 	local isOn = false
 	local isWalking = false
-	
+
 	script.Parent.Activated:Connect(function()
 		isOn = not isOn
-	
+
 		local localPlayer = Players.LocalPlayer
 		local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 		local humanoid = character:WaitForChild('Humanoid')
-	
+
 		if isOn then
 			-- Change the button color when activated
 			TS:Create(script.Parent, TweenInfo.new(0.5), {BackgroundColor3 = Color3.fromRGB(51, 160, 255)}):Play()
-	
+
 			-- Move logic based on selected value
 			local function updateMovement()
 				local selectedValue = script.Parent.Parent.SelectedValue.Value
 				local speed = tonumber(script.Parent.Parent.TextBox.Text) or 16 -- Fallback to default speed
-	
+
 				local delta = RunService.Heartbeat:Wait() -- Get delta once for this update
-	
+
 				if selectedValue == "Normal" then
 					humanoid.WalkSpeed = speed
 				elseif selectedValue == "CFrame" then
@@ -5758,19 +5810,19 @@ local script = G2L["17e"];
 					end)
 				end
 			end
-	
+
 			-- Connect to SelectedValue changed event to update movement
 			script.Parent.Parent.SelectedValue.Changed:Connect(updateMovement)
-	
+
 			-- Call immediately to set initial movement based on selected value
 			updateMovement()
 		else
 			-- Revert the button color when deactivated
 			TS:Create(script.Parent, TweenInfo.new(0.5), {BackgroundColor3 = Color3.fromRGB(70, 70, 70)}):Play()
-	
+
 			-- Reset speed when deactivated
 			local selectedValue = script.Parent.Parent.SelectedValue.Value
-	
+
 			if selectedValue == "Normal" then
 				humanoid.WalkSpeed = 16
 			elseif selectedValue == "CFrame" then
@@ -5781,25 +5833,25 @@ local script = G2L["17e"];
 			end
 		end
 	end)
-	
+
 end;
 task.spawn(C_17e);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.Dropdown.TextButton.LocalScript
 local function C_185()
-local script = G2L["185"];
+	local script = G2L["185"];
 	local isChosen = false
-	
+
 	script.Parent.Activated:Connect(function()
 		-- Toggle the selected state
 		isChosen = not isChosen
-	
+
 		-- Loop through all GUI buttons in the same parent to reset their colors
 		for _, v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('GuiButton') then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Reset color of all buttons
 			end
 		end
-	
+
 		if isChosen then
 			-- Change background color of the selected button and set SelectedValue
 			script.Parent.BackgroundColor3 = Color3.fromRGB(29, 61, 109)
@@ -5811,25 +5863,25 @@ local script = G2L["185"];
 			isChosen = false
 		end
 	end)
-	
+
 end;
 task.spawn(C_185);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.Dropdown.TextButton.LocalScript
 local function C_189()
-local script = G2L["189"];
+	local script = G2L["189"];
 	local isChosen = false
-	
+
 	script.Parent.Activated:Connect(function()
 		-- Toggle the selected state
 		isChosen = not isChosen
-	
+
 		-- Loop through all GUI buttons in the same parent to reset their colors
 		for _, v in pairs(script.Parent.Parent:GetChildren()) do
 			if v:IsA('GuiButton') then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Reset color of all buttons
 			end
 		end
-	
+
 		if isChosen then
 			-- Change background color of the selected button and set SelectedValue
 			script.Parent.BackgroundColor3 = Color3.fromRGB(29, 61, 109)
@@ -5841,12 +5893,12 @@ local script = G2L["189"];
 			isChosen = false
 		end
 	end)
-	
+
 end;
 task.spawn(C_189);
 -- StarterGui.SSWorks.Main.ContentProvider.External.ScrollingFrame.Frame.ImageButton.LocalScript
 local function C_18d()
-local script = G2L["18d"];
+	local script = G2L["18d"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Dropdown.Visible = not script.Parent.Parent.Dropdown.Visible
 	end)
@@ -5854,19 +5906,24 @@ end;
 task.spawn(C_18d);
 -- StarterGui.SSWorks.OpenManager
 local function C_193()
-local script = G2L["193"];
+	local script = G2L["193"];
+	-- Services
 	local UIS = game:GetService('UserInputService')
 	local TS = game:GetService('TweenService')
 	local NotifyService = require(script.Parent.Modules.NotificationAPI)
-	
-	local isOpen = script.Parent.isOpen
-	
+
+	-- Variables
+	local isOpen = false  -- Define as a boolean initially
+
+	-- Auto-run
+
+	-- Left Alt Toggle
 	UIS.InputBegan:Connect(function(input, isTyping)
 		if isTyping then return end
 		if input.KeyCode == Enum.KeyCode.LeftAlt then
 			isOpen = not isOpen
-			
-			if isOpen == true then
+
+			if isOpen then
 				script.Parent.Main.Visible = true
 				TS:Create(script.Parent.Main, TweenInfo.new(.4), {GroupTransparency = 0}):Play()
 			else
@@ -5879,39 +5936,91 @@ local script = G2L["193"];
 			end
 		end
 	end)
-	
-	script.Parent.Main.KeySystem.Visible = true
-	NotifyService:Create('Config', "Default Config was loaded.", 3)
-	
+
+	-- Key System Visibility Logic
 	if game:GetService('Players').LocalPlayer.Name == "OldestRaidAccount" then
 		script.Parent.Main.KeySystem.Visible = false
 	else
 		script.Parent.Main.KeySystem.Visible = true
 	end
+
+	task.wait(2)
+
+	-- Show Loader
+	TS:Create(script.Parent.Loader, TweenInfo.new(.4), {GroupTransparency = 0}):Play()
+	TS:Create(script.Parent.Loader.UIStroke, TweenInfo.new(.4), {Transparency = 0}):Play()
+	task.wait(.2)
+
+	-- Animate UI components
+	TS:Create(script.Parent.Loader.ImageLabel, TweenInfo.new(.6), {Position = UDim2.new(0.375, 0, 0.298, 0)}):Play()
+	TS:Create(script.Parent.Loader.TextLabel, TweenInfo.new(.6), {Position = UDim2.new(0.25, 0, 0.548, 0)}):Play()
+	task.wait(.1)
+
+	-- Fade in the elements
+	TS:Create(script.Parent.Loader.ImageLabel, TweenInfo.new(.5), {ImageTransparency = 0}):Play()
+	TS:Create(script.Parent.Loader.TextLabel, TweenInfo.new(.7), {TextTransparency = 0.4}):Play()
+
+	task.wait(.5)
+
+	-- Update Loading Text
+	script.Parent.Loader.TextLabel.Text = "Loading Configuration"
+	task.wait(.5)
+	NotifyService:Create('Config', "Default Config was loaded.", 3)
+
+	-- Update Module Loading
+	script.Parent.Loader.TextLabel.Text = "Loading Modules"
+	task.wait(.5)
+
+	-- Final Loader Text
+	script.Parent.Loader.TextLabel.Text = "Loaded! Press Left-ALT to Open or Close! Opening, enjoy."
+
+
+	-- Final Loader Animation Out
+	task.wait(2)
+	TS:Create(script.Parent.Loader.ImageLabel, TweenInfo.new(.6), {Position = UDim2.new(0.375, 0, 0.098, 0)}):Play()
+	TS:Create(script.Parent.Loader.TextLabel, TweenInfo.new(.6), {Position = UDim2.new(0.25, 0, 0.347, 0)}):Play()
+
+	task.wait(.1)
+
+	-- Fade Out Loader
+	TS:Create(script.Parent.Loader.ImageLabel, TweenInfo.new(.5), {ImageTransparency = 1}):Play()
+	TS:Create(script.Parent.Loader.TextLabel, TweenInfo.new(.7), {TextTransparency = 1}):Play()
+
+	task.wait(.4)
+
+	TS:Create(script.Parent.Loader, TweenInfo.new(.4), {GroupTransparency = 1}):Play()
+	TS:Create(script.Parent.Loader.UIStroke, TweenInfo.new(.4), {Transparency = 1}):Play()
+
+	task.wait(.3)
+
+	-- Display Main Interface
+	script.Parent.Main.Visible = true
+	TS:Create(script.Parent.Main, TweenInfo.new(.4), {GroupTransparency = 0}):Play()
+
 end;
 task.spawn(C_193);
 -- StarterGui.SSWorks.FPlayerUI.Manager
 local function C_19e()
-local script = G2L["19e"];
+	local script = G2L["19e"];
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
 	local TweenService = game:GetService("TweenService")
 	local Camera = game.Workspace.CurrentCamera
-	
+
 	local localPlayer = Players.LocalPlayer
-	
+
 	-- Fetch the thumbnail (for the current nearest player later)
 	local thumbType = Enum.ThumbnailType.HeadShot
 	local thumbSize = Enum.ThumbnailSize.Size420x420
-	
+
 	local UserLabel = script.Parent.TextLabel
 	local imageLabel = script.Parent.ImageLabel
 	local healthBar = script.Parent.HealthBar
-	
+
 	local function getNearestPlayer()
 		local closestPlayer = nil
 		local shortestDistance = 50  -- Set the max range (40 studs)
-	
+
 		-- Loop through all players to find the closest one within 40 studs
 		for _, player in pairs(Players:GetPlayers()) do
 			if player ~= localPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
@@ -5922,57 +6031,57 @@ local script = G2L["19e"];
 				end
 			end
 		end
-	
+
 		return closestPlayer
 	end
-	
+
 	local function updateUIForPlayer(targetPlayer)
 		-- Update the user thumbnail and name for the target player
 		local content, isReady = Players:GetUserThumbnailAsync(targetPlayer.UserId, thumbType, thumbSize)
 		imageLabel.Image = content
 		UserLabel.Text = targetPlayer.Name
 	end
-	
+
 	RunService.Heartbeat:Connect(function()
 		-- Ensure the local player character and humanoid exist
 		local localCharacter = localPlayer.Character
 		if localCharacter and localCharacter:FindFirstChild("HumanoidRootPart") and localCharacter:FindFirstChild("Humanoid") then
 			local targetPlayer = getNearestPlayer()
-	
+
 			if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") and targetPlayer.Character:FindFirstChild("Humanoid") then
 				local humanoidRootPart = targetPlayer.Character.HumanoidRootPart
 				local humanoid = targetPlayer.Character.Humanoid
-	
+
 				-- If the player is dead, find the next closest one
 				if humanoid.Health <= 0 then
 					targetPlayer = getNearestPlayer()  -- Find the next closest player if the current one is dead
 				end
-	
+
 				-- Update the UI to focus on the nearest player
 				if targetPlayer then
 					updateUIForPlayer(targetPlayer)
-	
+
 					local currentHealth = humanoid.Health
 					local maxHealth = humanoid.MaxHealth
-	
+
 					-- Calculate the width of the health bar relative to current health
 					local healthPercent = currentHealth / maxHealth
 					local barWidth = 200 * healthPercent  -- Full width is 200
-	
+
 					-- Tween the health bar size to smoothly adjust it
 					TweenService:Create(healthBar, TweenInfo.new(0.3), {Size = UDim2.new(0, barWidth, 0, 4)}):Play()
-	
+
 					-- Convert HumanoidRootPart's 3D position to 2D screen position
 					local rootPosition = humanoidRootPart.Position
 					local screenPosition, onScreen = Camera:WorldToViewportPoint(rootPosition)
-	
+
 					-- Check if the HumanoidRootPart is on the player's screen
 					if onScreen then
 						-- Update the position of script.Parent to follow the target player's HumanoidRootPart in 2D space
 						local newPosition = UDim2.new(0, screenPosition.X, 0, screenPosition.Y)
 						TweenService:Create(script.Parent, TweenInfo.new(0.1), {Position = newPosition}):Play()
 					end
-					
+
 					if humanoid.Health < 1 then
 						script.Parent.Position = UDim2.new(10000000000000000,100000000000,10000000000000,10000000000000)
 					end
@@ -5982,52 +6091,52 @@ local script = G2L["19e"];
 			end
 		end
 	end)
-	
+
 end;
 task.spawn(C_19e);
 -- StarterGui.SSWorks.AimAssistFrame.LocalScript
 local function C_1a6()
-local script = G2L["1a6"];
+	local script = G2L["1a6"];
 	local RunService = game:GetService("RunService")
-	
+
 	RunService.Heartbeat:Connect(function()
 		local mouse = game:GetService('Players').LocalPlayer:GetMouse()
-	
+
 		-- Get the screen size to prevent the frame from going off-screen
 		local screenWidth = game:GetService("Workspace").CurrentCamera.ViewportSize.X
 		local screenHeight = game:GetService("Workspace").CurrentCamera.ViewportSize.Y
-	
+
 		-- Frame size (350x350) - adjust these values if needed
 		local frameWidth = 350
 		local frameHeight = 350
-	
+
 		-- Calculate new frame position so the mouse is at the center of the frame
 		local newX = math.clamp(mouse.X - frameWidth / 2, 0, screenWidth - frameWidth)
 		local newY = math.clamp(mouse.Y - frameHeight / 2, 0, screenHeight - frameHeight)
-	
+
 		-- Update the frame position
 		script.Parent.Position = UDim2.new(0, newX, 0, newY)
 	end)
-	
+
 end;
 task.spawn(C_1a6);
 -- StarterGui.SSWorks.KeyConfig.ChangeKey.SmoothDrag
 local function C_1b1()
-local script = G2L["1b1"];
+	local script = G2L["1b1"];
 	local UserInputService = game:GetService("UserInputService")
 	local runService = (game:GetService("RunService"));
-	
+
 	local gui = script.Parent
-	
+
 	local dragging
 	local dragInput
 	local dragStart
 	local startPos
-	
+
 	function Lerp(a, b, m)
 		return a + (b - a) * m
 	end;
-	
+
 	local lastMousePos
 	local lastGoalPos
 	local DRAG_SPEED = (8); -- // The speed of the UI darg.
@@ -6037,21 +6146,21 @@ local script = G2L["1b1"];
 			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
 			return 
 		end;
-	
+
 		local delta = (lastMousePos - UserInputService:GetMouseLocation())
 		local xGoal = (startPos.X.Offset - delta.X);
 		local yGoal = (startPos.Y.Offset - delta.Y);
 		lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
 		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
 	end;
-	
+
 	gui.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
 			dragStart = input.Position
 			startPos = gui.Position
 			lastMousePos = UserInputService:GetMouseLocation()
-	
+
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
@@ -6059,19 +6168,19 @@ local script = G2L["1b1"];
 			end)
 		end
 	end)
-	
+
 	gui.InputChanged:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 			dragInput = input
 		end
 	end)
-	
+
 	runService.Heartbeat:Connect(Update)
 end;
 task.spawn(C_1b1);
 -- StarterGui.SSWorks.KeyConfig.ChangeKey.TextButton.LocalScript
 local function C_1be()
-local script = G2L["1be"];
+	local script = G2L["1be"];
 	script.Parent.Activated:Connect(function()
 		if script.Parent.Parent.TextBox.Text ~= "" then
 			script.Parent.Parent.Parent.Parent.Configurations.Key.Value = script.Parent.Parent.TextBox.Text
@@ -6085,7 +6194,7 @@ end;
 task.spawn(C_1be);
 -- StarterGui.SSWorks.KeyConfig.ChangeKey.TextButton.LocalScript
 local function C_1c6()
-local script = G2L["1c6"];
+	local script = G2L["1c6"];
 	script.Parent.Activated:Connect(function()
 		script.Parent.Parent.Visible = false
 		script.Parent.Parent.TextBox.Text = ""
