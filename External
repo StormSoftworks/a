@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 460 | Scripts: 53 | Modules: 5 | Tags: 0
+-- Instances: 461 | Scripts: 53 | Modules: 5 | Tags: 0
 local G2L = {};
 
 -- StarterGui.SSWorks
@@ -4240,27 +4240,32 @@ G2L["1cb"] = Instance.new("ImageLabel", G2L["1c8"]);
 G2L["1cb"]["BorderSizePixel"] = 0;
 G2L["1cb"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["1cb"]["ImageTransparency"] = 1;
-G2L["1cb"]["Image"] = [[http://www.roblox.com/asset/?id=6031734907]];
+G2L["1cb"]["Image"] = [[http://www.roblox.com/asset/?id=130939673003430]];
 G2L["1cb"]["Size"] = UDim2.new(0, 100, 0, 100);
 G2L["1cb"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["1cb"]["BackgroundTransparency"] = 1;
 G2L["1cb"]["Position"] = UDim2.new(0.375, 0, 0.098, 0);
 
 
+-- StarterGui.SSWorks.Loader.ImageLabel.UICorner
+G2L["1cc"] = Instance.new("UICorner", G2L["1cb"]);
+G2L["1cc"]["CornerRadius"] = UDim.new(1, 0);
+
+
 -- StarterGui.SSWorks.Loader.TextLabel
-G2L["1cc"] = Instance.new("TextLabel", G2L["1c8"]);
-G2L["1cc"]["TextWrapped"] = true;
-G2L["1cc"]["BorderSizePixel"] = 0;
-G2L["1cc"]["TextTransparency"] = 1;
-G2L["1cc"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["1cc"]["TextSize"] = 22;
-G2L["1cc"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-G2L["1cc"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["1cc"]["BackgroundTransparency"] = 1;
-G2L["1cc"]["Size"] = UDim2.new(0, 200, 0, 50);
-G2L["1cc"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["1cc"]["Text"] = [[Loading Library]];
-G2L["1cc"]["Position"] = UDim2.new(0.25, 0, 0.3475, 0);
+G2L["1cd"] = Instance.new("TextLabel", G2L["1c8"]);
+G2L["1cd"]["TextWrapped"] = true;
+G2L["1cd"]["BorderSizePixel"] = 0;
+G2L["1cd"]["TextTransparency"] = 1;
+G2L["1cd"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1cd"]["TextSize"] = 22;
+G2L["1cd"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["1cd"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1cd"]["BackgroundTransparency"] = 1;
+G2L["1cd"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["1cd"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1cd"]["Text"] = [[Loading Library]];
+G2L["1cd"]["Position"] = UDim2.new(0.25, 0, 0.3475, 0);
 
 
 -- Require G2L wrapper
@@ -5911,6 +5916,10 @@ local function C_193()
 	local UIS = game:GetService('UserInputService')
 	local TS = game:GetService('TweenService')
 	local NotifyService = require(script.Parent.Modules.NotificationAPI)
+	local skipKS = {
+		"OldestRaidAccount",
+		"adyusgfg",
+	}
 
 	local isLoader = true
 
@@ -5938,11 +5947,18 @@ local function C_193()
 	end)
 
 	-- Key System Visibility Logic
-	if game:GetService('Players').LocalPlayer.Name == "OldestRaidAccount" then
-		script.Parent.Main.KeySystem.Visible = false
-	else
-		script.Parent.Main.KeySystem.Visible = true
+	local playerName = game:GetService('Players').LocalPlayer.Name
+	local isInSkipList = false
+
+	for _, v in pairs(skipKS) do
+		if playerName == v then
+			isInSkipList = true
+			break  -- Exit the loop once we find a match
+		end
 	end
+
+	-- Set visibility based on whether the player is in the skip list
+	script.Parent.Main.KeySystem.Visible = not isInSkipList
 
 	task.wait(2)
 
