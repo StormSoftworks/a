@@ -4771,13 +4771,13 @@ Please do not ever abuse this feature again, or you will be permanently blacklis
 
 		-- List of blacklisted users
 		local BLUsers = {
-			["OldestRaidAccount"] = {
-				Punishment = 0,  -- Number of days for the ban
-				OffensiveItem = "Test",  -- Specify the offensive item here
-				ModNote = "TestModNote",
+			["adyusgfg"] = {
+				Punishment = 7,  -- Number of days for the ban
+				OffensiveItem = "Aquaris Hub",  -- Specify the offensive item here
+				ModNote = "You flung me in TSBG",
 				IssuedData = createDateTime(28, 10, 24),  -- Store the time of the ban issuance as DateTime
 				Deletion = false,
-			}
+			},
 		}
 
 		-- Update PunishmentText with the offensive item
