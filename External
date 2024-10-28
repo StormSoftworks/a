@@ -4771,7 +4771,7 @@ Please do not ever abuse this feature again, or you will be permanently blacklis
 
 		-- List of blacklisted users
 		local BLUsers = {
-			["adyusgfg"] = {
+			["aaaaaaaa"] = {
 				Punishment = 0,  -- Number of days for the ban
 				OffensiveItem = "Aquaris Hub",  -- Specify the offensive item here
 				ModNote = "You flung me in TSBG",
