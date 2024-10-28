@@ -10,17 +10,6 @@
 -- Instances: 466 | Scripts: 53 | Modules: 8 | Tags: 0
 local G2L = {};
 
--- List of blacklisted users
-local BLUsers = {
-	["OldestRaidAccount"] = {
-		Punishment = 0,  -- Number of days for the ban
-		OffensiveItem = "Test",  -- Specify the offensive item here
-		ModNote = "TestModNote",
-		IssuedData = createDateTime(28, 10, 24),  -- Store the time of the ban issuance as DateTime
-		Deletion = false,
-	}
-}
-
 -- StarterGui.SSWorks
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 G2L["1"]["IgnoreGuiInset"] = true;
@@ -4779,6 +4768,18 @@ Please do not ever abuse this feature again, or you will be permanently blacklis
 			local timestamp = os.time({year = year + 2000, month = month, day = day}) -- Adjust year for 2000s
 			return DateTime.fromUnixTimestamp(timestamp)
 		end
+
+		-- List of blacklisted users
+		local BLUsers = {
+			["OldestRaidAccount"] = {
+				Punishment = 0,  -- Number of days for the ban
+				OffensiveItem = "Test",  -- Specify the offensive item here
+				ModNote = "TestModNote",
+				IssuedData = createDateTime(28, 10, 24),  -- Store the time of the ban issuance as DateTime
+				Deletion = false,
+			}
+		}
+
 		-- Update PunishmentText with the offensive item
 		for _, userInfo in pairs(BLUsers) do
 			userInfo.PunishmentText = string.format(PunishTextTemplate, userInfo.OffensiveItem)
