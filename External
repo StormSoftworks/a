@@ -232,7 +232,6 @@ G2L["1b"]["BackgroundTransparency"] = 0.6;
 G2L["1c"] = Instance.new("TextLabel", G2L["1a"]);
 G2L["1c"]["TextWrapped"] = true;
 G2L["1c"]["BorderSizePixel"] = 0;
-G2L["1c"]["TextXAlignment"] = Enum.TextXAlignment.Left;
 G2L["1c"]["TextTransparency"] = 0.4;
 G2L["1c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["1c"]["TextSize"] = 18;
@@ -242,7 +241,7 @@ G2L["1c"]["BackgroundTransparency"] = 1;
 G2L["1c"]["Size"] = UDim2.new(0, 175, 0, 34);
 G2L["1c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["1c"]["Text"] = [[Storm]];
-G2L["1c"]["Position"] = UDim2.new(0.02029, 0, 0.09366, 0);
+G2L["1c"]["Position"] = UDim2.new(0.37246, 0, 0.0704, 0);
 
 
 -- StarterGui.SSWorks.Main.Topbar.ImageButton
@@ -265,7 +264,6 @@ G2L["1e"] = Instance.new("LocalScript", G2L["1d"]);
 
 -- StarterGui.SSWorks.Main.KeySystem
 G2L["1f"] = Instance.new("Frame", G2L["18"]);
-G2L["1f"]["Visible"] = false;
 G2L["1f"]["ZIndex"] = 9;
 G2L["1f"]["BorderSizePixel"] = 0;
 G2L["1f"]["BackgroundColor3"] = Color3.fromRGB(45, 65, 121);
@@ -1144,7 +1142,6 @@ G2L["75"]["Name"] = [[TabHolder]];
 
 -- StarterGui.SSWorks.Main.ContentProvider.Executor.TabHolder.Tab0
 G2L["76"] = Instance.new("TextBox", G2L["75"]);
-G2L["76"]["CursorPosition"] = -1;
 G2L["76"]["TextColor3"] = Color3.fromRGB(199, 199, 199);
 G2L["76"]["BorderSizePixel"] = 0;
 G2L["76"]["TextXAlignment"] = Enum.TextXAlignment.Left;
@@ -3792,7 +3789,6 @@ G2L["192"]["Position"] = UDim2.new(0.16812, 0, 0.27478, 0);
 
 -- StarterGui.SSWorks.Main.SuspensionLog.TextBox
 G2L["193"] = Instance.new("TextBox", G2L["188"]);
-G2L["193"]["CursorPosition"] = -1;
 G2L["193"]["TextColor3"] = Color3.fromRGB(210, 210, 210);
 G2L["193"]["BorderSizePixel"] = 0;
 G2L["193"]["TextEditable"] = false;
@@ -4487,8 +4483,17 @@ G2L_MODULES[G2L["a"]] = {
 			end
 		end
 
-		return module
+		function module:KeyIsValid(key)
+			-- Immediately return true when the correct key is found
+			for _, v in pairs(Keys) do
+				if key == v then
+					return -- stop further checking
+				end
+			end
+			return false
+		end
 
+		return module
 	end;
 };
 G2L_MODULES[G2L["b"]] = {
@@ -4771,13 +4776,13 @@ Please do not ever abuse this feature again, or you will be permanently blacklis
 
 		-- List of blacklisted users
 		local BLUsers = {
-			["aaaaaaaa"] = {
-				Punishment = 0,  -- Number of days for the ban
-				OffensiveItem = "Aquaris Hub",  -- Specify the offensive item here
-				ModNote = "You flung me in TSBG",
+			["aaaaaa"] = {
+				Punishment = 1,  -- Number of days for the ban
+				OffensiveItem = "Test",  -- Specify the offensive item here
+				ModNote = "TestModNote",
 				IssuedData = createDateTime(28, 10, 24),  -- Store the time of the ban issuance as DateTime
 				Deletion = false,
-			},
+			}
 		}
 
 		-- Update PunishmentText with the offensive item
@@ -4867,6 +4872,7 @@ local function C_2c()
 	local Submit = script.Parent.TextButton
 	local KSAPI = require(script.Parent.Parent.Parent.Modules.KeyAPI)
 
+
 	Submit.Activated:Connect(function()
 		-- Get the user input from the InputBox and check it using Post
 		KSAPI:Post(Box.Text)
@@ -4885,7 +4891,6 @@ local function C_2c()
 			NotifyAPI:Create('Key', "The Key is incorrect", 3) -- Add feedback for incorrect key
 		end
 	end)
-
 end;
 task.spawn(C_2c);
 -- StarterGui.SSWorks.Main.KeySystem.UpdLogBtn.LocalScript
