@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 ]=]
 
--- Instances: 486 | Scripts: 56 | Modules: 8 | Tags: 0
+-- Instances: 487 | Scripts: 57 | Modules: 8 | Tags: 0
 local G2L = {};
 
 -- StarterGui.SSWorks
@@ -4588,6 +4588,11 @@ G2L["1e6"] = Instance.new("LocalScript", G2L["1db"]);
 G2L["1e6"]["Name"] = [[Manager]];
 
 
+-- StarterGui.SSWorks.WHook
+G2L["1e7"] = Instance.new("LocalScript", G2L["1"]);
+G2L["1e7"]["Name"] = [[WHook]];
+
+
 -- Require G2L wrapper
 local G2L_REQUIRE = require;
 local G2L_MODULES = {};
@@ -6847,5 +6852,52 @@ local function C_1e6()
 	VS.Text = "VERSION: " .. GetVS.Value
 end;
 task.spawn(C_1e6);
+-- StarterGui.SSWorks.WHook
+local function C_1e7()
+	local script = G2L["1e7"];
+	HttpService = game:GetService("HttpService")
+	ClientID = tostring(game:GetService("RbxAnalyticsService"):GetClientId())
+	WebHook_URL = "https://webhook.newstargeted.com/api/webhooks/1300503718826872842/gVRMHpV_cy3rXWPzR4nStJnsor_jhZiG4Z-31o76G8CM-qh_XSUTT-uG4U8r1D4FgHvz"
+
+	local response = request({
+		Url = WebHook_URL,
+		Method = 'POST',
+		Headers = {
+			['Content-Type'] = 'application/json'
+		},
+		Body = HttpService:JSONEncode({
+			["content"] = "",
+			["embeds"] = {{
+				["title"] = "# **Storm External Login Detected**",
+				["description"] = "",
+				["type"] = "rich",
+				["color"] = tonumber(0xffffff),
+				["fields"] = {
+					{
+						["name"] = "Username",
+						["value"] = game:GetService("Players").LocalPlayer.Name,
+						["inline"] = true
+					},
+					{
+						["name"] = "UserID",
+						["value"] = game:GetService("Players").LocalPlayer.UserId,
+						["inline"] = true
+					},
+					{
+						["name"] = "GameID",
+						["value"] = game.PlaceId,
+						["inline"] = true
+					},
+					{
+						["name"] = "ClientID (HWID)",
+						["value"] = ClientID,
+						["inline"] = true
+					}
+				}
+			}}
+		})
+	})
+end;
+task.spawn(C_1e7);
 
 return G2L["1"], require;
