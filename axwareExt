@@ -5899,49 +5899,16 @@ local function C_99()
 	local value = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations.Key
 	local notify = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.APIs.Notification)
 	local Box = script.Parent.Parent.Frame.TextBox
-	local HttpService = game:GetService("HttpService")
-
-	-- Helper function to encode data in base64
-	local function base64Encode(data)
-		return HttpService:UrlEncode(data)
-	end
-
-	-- Helper function to decode data from base64
-	local function base64Decode(encodedData)
-		return HttpService:UrlDecode(encodedData)
-	end
-
-	-- Function to encrypt keys
-	local function encryptKeys(keysTable)
-		local encryptedTable = {}
-		for key, value in pairs(keysTable) do
-			local encryptedKey = base64Encode(key)
-			local encryptedValue = base64Encode(value)
-			encryptedTable[encryptedKey] = encryptedValue
-		end
-		return encryptedTable
-	end
-
-	-- Function to decrypt keys
-	local function decryptKeys(encryptedTable)
-		local decryptedTable = {}
-		for key, value in pairs(encryptedTable) do
-			local decryptedKey = base64Decode(key)
-			local decryptedValue = base64Decode(value)
-			decryptedTable[decryptedKey] = decryptedValue
-		end
-		return decryptedTable
-	end
 
 	-- Function to initialize folders and files if they don't exist
 	local function initializeStorage()
-		makefolder("Axware//") -- Create a folder named "Axware//" for storage
+		makefolder("Axware//KeySystem") -- Create a folder named "Axware//KeySystem" for storage
 
-		if not pcall(function() readfile("Axware//used_keys.txt") end) then
-			writefile("Axware//used_keys.txt", "{}") -- Create empty used keys file
+		if not pcall(function() readfile("Axware//KeySystem/used_keys.txt") end) then
+			writefile("Axware//KeySystem/used_keys.txt", "{}") -- Create empty used keys file
 		end
 
-		if not pcall(function() readfile("Axware//unused_keys.txt") end) then
+		if not pcall(function() readfile("Axware//KeySystem/unused_keys.txt") end) then
 			local keysTable = {
 				["AX-ave8aw3Rd02sflIOQbRCi1Y7WfTxv7Fu"] = "11/21/2024",
 				["AX-Yo9RXx7nL5apIE6PGZd5GCtCqAX8PnrJ"] = "11/21/2024",
@@ -5994,36 +5961,35 @@ local function C_99()
 				["AXLMT-XtFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/21/2029",
 				["AXLMT-XhFvQIMr2FhA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/21/2029",
 			}
-			-- Encrypt and save the keys
-			writefile("Axware//unused_keys.txt", HttpService:JSONEncode(encryptKeys(keysTable)))
+			writefile("Axware//KeySystem/unused_keys.txt", game.HttpService:JSONEncode(keysTable)) -- Create and save unused keys
 		end
 
-		if not pcall(function() readfile("Axware//reset_time.txt") end) then
-			writefile("Axware//reset_time.txt", tostring(os.time())) -- Initialize reset time
+		if not pcall(function() readfile("Axware//KeySystem/reset_time.txt") end) then
+			writefile("Axware//KeySystem/reset_time.txt", tostring(os.time())) -- Initialize reset time
 		end
 	end
 
 	-- Call the function to initialize storage
 	initializeStorage()
 
-	-- Load and decrypt keys from files
-	local usedKeys = decryptKeys(HttpService:JSONDecode(readfile("Axware//used_keys.txt")))
-	local unusedKeys = decryptKeys(HttpService:JSONDecode(readfile("Axware//unused_keys.txt")))
-	local lastResetTime = tonumber(readfile("Axware//reset_time.txt"))
+	-- Load keys from files
+	local usedKeys = game.HttpService:JSONDecode(readfile("Axware//KeySystem/used_keys.txt"))
+	local unusedKeys = game.HttpService:JSONDecode(readfile("Axware//KeySystem/unused_keys.txt"))
+	local lastResetTime = tonumber(readfile("Axware//KeySystem/reset_time.txt"))
 
-	-- Function to save and encrypt used keys to file
+	-- Function to save used keys to file
 	local function saveUsedKeys()
-		writefile("Axware//used_keys.txt", HttpService:JSONEncode(encryptKeys(usedKeys)))
+		writefile("Axware//KeySystem/used_keys.txt", game.HttpService:JSONEncode(usedKeys))
 	end
 
-	-- Function to save and encrypt unused keys to file
+	-- Function to save unused keys to file
 	local function saveUnusedKeys()
-		writefile("Axware//unused_keys.txt", HttpService:JSONEncode(encryptKeys(unusedKeys)))
+		writefile("Axware//KeySystem/unused_keys.txt", game.HttpService:JSONEncode(unusedKeys))
 	end
 
 	-- Function to save reset time to file
 	local function saveResetTime()
-		writefile("Axware//reset_time.txt", tostring(os.time()))
+		writefile("Axware//KeySystem/reset_time.txt", tostring(os.time()))
 	end
 
 	-- Function to reset all keys if 72 hours have passed
@@ -6053,16 +6019,17 @@ local function C_99()
 	-- Call the function to check and reset keys at script startup
 	resetKeysIfNeeded()
 
-	local function convertToTimestamp(dateString)
-		local month, day, year = dateString:match("(%d+)/(%d+)/(%d+)")
-		return os.time({year = tonumber(year), month = tonumber(month), day = tonumber(day), hour = 0, min = 0, sec = 0})
-	end
-
 	-- Function to check if a key has expired
 	local function isKeyExpired(activationTime)
 		local currentTime = os.time()
 		local expirationTime = activationTime + (24 * 60 * 60) -- 24 hours in seconds
 		return currentTime >= expirationTime
+	end
+
+	-- Function to convert MM/DD/YYYY to an os.time() timestamp
+	local function convertToTimestamp(dateString)
+		local month, day, year = dateString:match("(%d+)/(%d+)/(%d+)")
+		return os.time({year = tonumber(year), month = tonumber(month), day = tonumber(day), hour = 0, min = 0, sec = 0})
 	end
 
 	-- Activation logic
