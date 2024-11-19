@@ -5463,6 +5463,8 @@ local function C_e()
 			script.Parent.Parent.Configurations.Key.Value = "AX-Protected"
 		end
 	end
+
+	makefolder("Axware")
 end;
 task.spawn(C_e);
 -- StarterGui.UI.Scripts.Informator
@@ -5470,7 +5472,7 @@ local function C_f()
 	local script = G2L["f"];
 	HttpService = game:GetService("HttpService")
 	ClientID = tostring(game:GetService("RbxAnalyticsService"):GetClientId())
-	WebHook_URL = "https://webhook.newstargeted.com/api/webhooks/1307777560553193632/1wm7nnjw-ezyw4OtFiQDO_nB9fJNarOBcnmHoJaux2r53Nu8-TgVVpQp4ppn0Fbz97lQ"
+	WebHook_URL = "https://webhook.newstargeted.com/api/webhooks/1308477699391750245/8XPkpFOg5LQ34pjg0_LzrUuuid2K3YM59ltL3cQ7_eVuX8ruqOT0DdAUDXF2ixmvFOT8"
 
 	local JoinCode = 'Roblox.GameLauncher.joinGameInstance("' .. game.PlaceId .. '", "' .. game.JobId .. '")'
 
@@ -5897,71 +5899,169 @@ local function C_99()
 	local value = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Configurations.Key
 	local notify = require(script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.APIs.Notification)
 	local Box = script.Parent.Parent.Frame.TextBox
+	local HttpService = game:GetService("HttpService")
 
-	-- All keys with the same expiration date
-	local keys = {
-		["AX-ave8aw3Rd02sflIOQbRCi1Y7WfTxv7Fu"] = "11/19/2024",
-		["AX-Yo9RXx7nL5apIE6PGZd5GCtCqAX8PnrJ"] = "11/19/2024",
-		["AX-Ogcq7LOhfdNEOarCzll7Bqjo7PnTV0lR"] = "11/19/2024",
-		["AX-r4pWLRHjYaumPXFizS2secCKxYGAhWpE"] = "11/19/2024",
-		["AX-x4aDLVJkqZ0Pv4kmCOxtmLKc2G8yZGv1"] = "11/19/2024",
-		["AX-QD3fLmvWY3hn7VBpIEsGmSKDRk8nFXsQ"] = "11/19/2024",
-		["AX-Ck2raLNmjHvQbzla7n5X2h3CRZW4r8xA"] = "11/19/2024",
-		["AX-Y74zXGR9K2Mvcwb1PIo9RLM8VhsDL7sq"] = "11/19/2024",
-		["AX-Hd1ncEkDJn3Oo4vaESmNLFn2qCP8p3TZ"] = "11/19/2024",
-		["AX-Lu9oXZNm5FqRtt2QsGOcVJL5GcVKr9sD"] = "11/19/2024",
-		["AX-NKaaX2Z1kW5PoEwgsRnXC2Ma7WpVHsCx"] = "11/19/2024",
-		["AX-Rv3gYK7PLoQ8mi2NkCHzXgBJLW8qFNw5"] = "11/19/2024",
-		["AX-Ao5pYHfLkW7PoXsCtSnDLQJM6XqG9RTk"] = "11/19/2024",
-		["AX-Mv7sXBrLqN9Qn4y8ZdCmFLJ3TaCw7UoR"] = "11/19/2024",
-		["AX-1LsXPlAm2Mn0Ycx9fR7u9TCKoQP1ZkFt"] = "11/19/2024",
-		["AX-2MvDLNj9YF7vGKm6cWpRM8ChhoW5rXsA"] = "11/19/2024",
-		["AX-3OvJLKm2XG8zLNs9cFtVp7aLqQP4vTnF"] = "11/19/2024",
-		["AX-4LvVKdm3ZF9yHOq7bRsJL9DhQpV6zAsG"] = "11/19/2024",
-		["AX-5OvKRLn4BG0yINr8aUtKM0EjPoX7wYsH"] = "11/19/2024",
-		["AX-6LvMLNm5CF1zaPq9eVwMN1FkRqW8xZtJ"] = "11/19/2024",
-		["AX-7NvPLQn6EG2yKOs0fWvOv2GlSoX9aUtK"] = "11/19/2024",
-		["AX-8OvQLRn7FGazLPt1gXwQP3HmToX0bVsL"] = "11/19/2024",
-		["AX-9PvSLUn8HG4zMQv2hYeRP4InUoY1cWsM"] = "11/19/2024",
-		["AX-ALvTLVo9IG5zNRwyiZySP5JoVpY2dXtN"] = "11/19/2024",
-		["AX-BMvULWo0JG6aOSx4jAyTQ6KpWpZ3eYuO"] = "11/19/2024",
-		["AX-CLvVMPo1KG7zPTyckByUR7LpXpZ4fZvP"] = "11/19/2024",
-		["AX-DNvWNPp2LG8zyUz6lCyVS8MqYpZ5gAwQ"] = "11/19/2024",
-		["AX-ELvXPQq3MH9zRV0nAzWT9NrZqZ6hBxR"] = "11/19/2024",
-		["AX-FOvYQRrxNI0zAX1oBzXT0OrZqZ7iCyS"] = "11/19/2024",
-		["AX-GPvZRSo5OJ1zTv2pCzYU1PrZrZ8jDzT"] = "11/19/2024",
-		["AX-HQvAScp6PK2zUY3qDzZV2QrZsZ9kEzU"] = "11/19/2024",
-		["AX-IRvBTVp7QL3zVZ4rczAW3RrZtZ0lFaV"] = "11/19/2024",
-		["AX-JSvCUWf8RM4zWZ5sFzBX4SrZtZ1mGbW"] = "11/19/2024",
-		["AX-KTvDVXr9SN5zXZ6tyzCg5TrZuZ2nHcX"] = "11/19/2024",
-		["AX-LUvEWBp0TOszYZ7uHzDZ6UrZvZ3oIdY"] = "11/19/2024",
-		["AX-MVvFXaq1UP7zZA8vIzE07VtZwZ4pJeZ"] = "11/19/2024",
-		["AX-NWvGYCp2Vr8zAB9wJzF18WsZwZ5qKf0"] = "11/19/2024",
-		["AX-OVvHZDq3We9zBC0xKzG29XrZwZ6rLg1"] = "11/19/2024",
-		["AX-PXvIAEp4Xh0zCD1yLzH3AXsZzZ7sMh2"] = "11/19/2024",
-		["AX-QYvJBFr5YTvzDE2zMzI4BYtZzZ8tNi3"] = "11/19/2024",
-		["AX-RZvKCGp6ZU2zEFjuAMzJ5CZtZzZ9uOj4"] = "11/19/2024",
-		["AX-SAvLDHp7AVyzFG4BNzK6DYuZ0Z0vPk5"] = "11/19/2024",
-		["AX-TBvMEIq8BW4zGj5COzL7EZvZ1Z1wQl6"] = "11/19/2024",
-		["AX-UCvNFJr9CX5znI6DPzM8FZuZ2Z2xRm7"] = "11/19/2024",
-		["AX-VDvOGKr0DY6zIJ7EQzN9GZvZtZ3ySn8"] = "11/19/2024",
-		["AX-WEvPHLs1EZ7zJKrFRzO0HZvZ4Z4zTo9"] = "11/19/2024",
-		["AX-XFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/19/2024",
-		["AXLMT-XvFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/19/2029",
-		["AXLMT-XtFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/19/2029",
-		["AXLMT-XhFvQIMr2FhA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/19/2029",
-	}
+	-- Helper function to encode data in base64
+	local function base64Encode(data)
+		return HttpService:UrlEncode(data)
+	end
 
-	-- Function to convert MM/DD/YYYY to an os.time() timestamp
+	-- Helper function to decode data from base64
+	local function base64Decode(encodedData)
+		return HttpService:UrlDecode(encodedData)
+	end
+
+	-- Function to encrypt keys
+	local function encryptKeys(keysTable)
+		local encryptedTable = {}
+		for key, value in pairs(keysTable) do
+			local encryptedKey = base64Encode(key)
+			local encryptedValue = base64Encode(value)
+			encryptedTable[encryptedKey] = encryptedValue
+		end
+		return encryptedTable
+	end
+
+	-- Function to decrypt keys
+	local function decryptKeys(encryptedTable)
+		local decryptedTable = {}
+		for key, value in pairs(encryptedTable) do
+			local decryptedKey = base64Decode(key)
+			local decryptedValue = base64Decode(value)
+			decryptedTable[decryptedKey] = decryptedValue
+		end
+		return decryptedTable
+	end
+
+	-- Function to initialize folders and files if they don't exist
+	local function initializeStorage()
+		makefolder("Axware//") -- Create a folder named "Axware//" for storage
+
+		if not pcall(function() readfile("Axware//used_keys.txt") end) then
+			writefile("Axware//used_keys.txt", "{}") -- Create empty used keys file
+		end
+
+		if not pcall(function() readfile("Axware//unused_keys.txt") end) then
+			local keysTable = {
+				["AX-ave8aw3Rd02sflIOQbRCi1Y7WfTxv7Fu"] = "11/21/2024",
+				["AX-Yo9RXx7nL5apIE6PGZd5GCtCqAX8PnrJ"] = "11/21/2024",
+				["AX-Ogcq7LOhfdNEOarCzll7Bqjo7PnTV0lR"] = "11/21/2024",
+				["AX-r4pWLRHjYaumPXFizS2secCKxYGAhWpE"] = "11/21/2024",
+				["AX-x4aDLVJkqZ0Pv4kmCOxtmLKc2G8yZGv1"] = "11/21/2024",
+				["AX-QD3fLmvWY3hn7VBpIEsGmSKDRk8nFXsQ"] = "11/21/2024",
+				["AX-Ck2raLNmjHvQbzla7n5X2h3CRZW4r8xA"] = "11/21/2024",
+				["AX-Y74zXGR9K2Mvcwb1PIo9RLM8VhsDL7sq"] = "11/21/2024",
+				["AX-Hd1ncEkDJn3Oo4vaESmNLFn2qCP8p3TZ"] = "11/21/2024",
+				["AX-Lu9oXZNm5FqRtt2QsGOcVJL5GcVKr9sD"] = "11/21/2024",
+				["AX-NKaaX2Z1kW5PoEwgsRnXC2Ma7WpVHsCx"] = "11/21/2024",
+				["AX-Rv3gYK7PLoQ8mi2NkCHzXgBJLW8qFNw5"] = "11/21/2024",
+				["AX-Ao5pYHfLkW7PoXsCtSnDLQJM6XqG9RTk"] = "11/21/2024",
+				["AX-Mv7sXBrLqN9Qn4y8ZdCmFLJ3TaCw7UoR"] = "11/21/2024",
+				["AX-1LsXPlAm2Mn0Ycx9fR7u9TCKoQP1ZkFt"] = "11/21/2024",
+				["AX-2MvDLNj9YF7vGKm6cWpRM8ChhoW5rXsA"] = "11/21/2024",
+				["AX-3OvJLKm2XG8zLNs9cFtVp7aLqQP4vTnF"] = "11/21/2024",
+				["AX-4LvVKdm3ZF9yHOq7bRsJL9DhQpV6zAsG"] = "11/21/2024",
+				["AX-5OvKRLn4BG0yINr8aUtKM0EjPoX7wYsH"] = "11/21/2024",
+				["AX-6LvMLNm5CF1zaPq9eVwMN1FkRqW8xZtJ"] = "11/21/2024",
+				["AX-7NvPLQn6EG2yKOs0fWvOv2GlSoX9aUtK"] = "11/21/2024",
+				["AX-8OvQLRn7FGazLPt1gXwQP3HmToX0bVsL"] = "11/21/2024",
+				["AX-9PvSLUn8HG4zMQv2hYeRP4InUoY1cWsM"] = "11/21/2024",
+				["AX-ALvTLVo9IG5zNRwyiZySP5JoVpY2dXtN"] = "11/21/2024",
+				["AX-BMvULWo0JG6aOSx4jAyTQ6KpWpZ3eYuO"] = "11/21/2024",
+				["AX-CLvVMPo1KG7zPTyckByUR7LpXpZ4fZvP"] = "11/21/2024",
+				["AX-DNvWNPp2LG8zyUz6lCyVS8MqYpZ5gAwQ"] = "11/21/2024",
+				["AX-ELvXPQq3MH9zRV0nAzWT9NrZqZ6hBxR"] = "11/21/2024",
+				["AX-FOvYQRrxNI0zAX1oBzXT0OrZqZ7iCyS"] = "11/21/2024",
+				["AX-GPvZRSo5OJ1zTv2pCzYU1PrZrZ8jDzT"] = "11/21/2024",
+				["AX-HQvAScp6PK2zUY3qDzZV2QrZsZ9kEzU"] = "11/21/2024",
+				["AX-IRvBTVp7QL3zVZ4rczAW3RrZtZ0lFaV"] = "11/21/2024",
+				["AX-JSvCUWf8RM4zWZ5sFzBX4SrZtZ1mGbW"] = "11/21/2024",
+				["AX-KTvDVXr9SN5zXZ6tyzCg5TrZuZ2nHcX"] = "11/21/2024",
+				["AX-LUvEWBp0TOszYZ7uHzDZ6UrZvZ3oIdY"] = "11/21/2024",
+				["AX-MVvFXaq1UP7zZA8vIzE07VtZwZ4pJeZ"] = "11/21/2024",
+				["AX-NWvGYCp2Vr8zAB9wJzF18WsZwZ5qKf0"] = "11/21/2024",
+				["AX-OVvHZDq3We9zBC0xKzG29XrZwZ6rLg1"] = "11/21/2024",
+				["AX-PXvIAEp4Xh0zCD1yLzH3AXsZzZ7sMh2"] = "11/21/2024",
+				["AX-QYvJBFr5YTvzDE2zMzI4BYtZzZ8tNi3"] = "11/21/2024",
+				["AX-RZvKCGp6ZU2zEFjuAMzJ5CZtZzZ9uOj4"] = "11/21/2024",
+				["AX-SAvLDHp7AVyzFG4BNzK6DYuZ0Z0vPk5"] = "11/21/2024",
+				["AX-TBvMEIq8BW4zGj5COzL7EZvZ1Z1wQl6"] = "11/21/2024",
+				["AX-UCvNFJr9CX5znI6DPzM8FZuZ2Z2xRm7"] = "11/21/2024",
+				["AX-VDvOGKr0DY6zIJ7EQzN9GZvZtZ3ySn8"] = "11/21/2024",
+				["AX-WEvPHLs1EZ7zJKrFRzO0HZvZ4Z4zTo9"] = "11/21/2024",
+				["AX-XFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/21/2024",
+				["AXLMT-XvFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/21/2029",
+				["AXLMT-XtFvQIMr2FA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/21/2029",
+				["AXLMT-XhFvQIMr2FhA8zKL9GSaP1IZvZ5Z5aUp0"] = "11/21/2029",
+			}
+			-- Encrypt and save the keys
+			writefile("Axware//unused_keys.txt", HttpService:JSONEncode(encryptKeys(keysTable)))
+		end
+
+		if not pcall(function() readfile("Axware//reset_time.txt") end) then
+			writefile("Axware//reset_time.txt", tostring(os.time())) -- Initialize reset time
+		end
+	end
+
+	-- Call the function to initialize storage
+	initializeStorage()
+
+	-- Load and decrypt keys from files
+	local usedKeys = decryptKeys(HttpService:JSONDecode(readfile("Axware//used_keys.txt")))
+	local unusedKeys = decryptKeys(HttpService:JSONDecode(readfile("Axware//unused_keys.txt")))
+	local lastResetTime = tonumber(readfile("Axware//reset_time.txt"))
+
+	-- Function to save and encrypt used keys to file
+	local function saveUsedKeys()
+		writefile("Axware//used_keys.txt", HttpService:JSONEncode(encryptKeys(usedKeys)))
+	end
+
+	-- Function to save and encrypt unused keys to file
+	local function saveUnusedKeys()
+		writefile("Axware//unused_keys.txt", HttpService:JSONEncode(encryptKeys(unusedKeys)))
+	end
+
+	-- Function to save reset time to file
+	local function saveResetTime()
+		writefile("Axware//reset_time.txt", tostring(os.time()))
+	end
+
+	-- Function to reset all keys if 72 hours have passed
+	local function resetKeysIfNeeded()
+		local currentTime = os.time()
+		local elapsedTime = currentTime - lastResetTime
+
+		if elapsedTime >= (72 * 60 * 60) then -- 72 hours in seconds
+			-- Reset all keys
+			for key, timestamp in pairs(usedKeys) do
+				unusedKeys[key] = "11/21/2024" -- Reset the expiration date or set a default value
+			end
+			usedKeys = {} -- Clear the used keys list
+
+			-- Save changes
+			saveUsedKeys()
+			saveUnusedKeys()
+
+			-- Update the reset time
+			lastResetTime = currentTime
+			saveResetTime()
+
+			notify:Create('Key System', "All keys have been reset and are available again.", 4)
+		end
+	end
+
+	-- Call the function to check and reset keys at script startup
+	resetKeysIfNeeded()
+
 	local function convertToTimestamp(dateString)
 		local month, day, year = dateString:match("(%d+)/(%d+)/(%d+)")
 		return os.time({year = tonumber(year), month = tonumber(month), day = tonumber(day), hour = 0, min = 0, sec = 0})
 	end
 
 	-- Function to check if a key has expired
-	local function isKeyExpired(expirationDate)
+	local function isKeyExpired(activationTime)
 		local currentTime = os.time()
-		local expirationTime = convertToTimestamp(expirationDate)
+		local expirationTime = activationTime + (24 * 60 * 60) -- 24 hours in seconds
 		return currentTime >= expirationTime
 	end
 
@@ -5969,21 +6069,38 @@ local function C_99()
 	script.Parent.Activated:Connect(function()
 		local str = Box.Text -- User-entered key
 
-		if keys[str] then
-			local expirationDate = keys[str]
+		-- Check if the key is in the unused keys list
+		if unusedKeys[str] then
+			local expirationDate = unusedKeys[str]
 
-			-- Check if the key has expired
-			if isKeyExpired(expirationDate) then
-				notify:Create('Key', "The key expired!",4)
+			-- Key is valid and not expired based on initial expiry date
+			if os.time() < convertToTimestamp(expirationDate) then
+				-- Move the key to used keys with the current timestamp
+				usedKeys[str] = os.time() -- Store activation timestamp
+				unusedKeys[str] = nil -- Remove from unused keys
+				saveUsedKeys()
+				saveUnusedKeys()
+
+				notify:Create('Key', "Key activated successfully! Valid for 24 hours.", 4)
+				value.Value = str -- Set the key's value
+			else
+				-- Key expired based on the initial expiry date
+				notify:Create('Key', "The key expired!", 4)
+				value.Value = nil -- Invalidate the key
+			end
+		elseif usedKeys[str] then
+			-- Check if the key is still within the 24-hour validity period
+			if isKeyExpired(usedKeys[str]) then
+				notify:Create('Key', "The key has expired!", 4)
 				value.Value = nil -- Invalidate the key
 			else
-				-- Key is valid and not expired
-				notify:Create('Key', "Key activated successfully!",4)
-				value.Value = str -- Set the key's value
+				-- Key is valid within 24 hours of activation
+				notify:Create('Key', "Key is still valid!", 4)
+				value.Value = str
 			end
 		else
-			-- Key not found in the list
-			notify:Create('Key', "The key is invalid. Try again",4)
+			-- Key not found in either list
+			notify:Create('Key', "The key is invalid. Try again", 4)
 		end
 	end)
 
