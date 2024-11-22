@@ -1,1 +1,103 @@
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
 
+-- Instances: 10 | Scripts: 2 | Modules: 0 | Tags: 0
+local G2L = {};
+
+-- StarterGui.Loader
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["Name"] = [[Loader]];
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+-- StarterGui.Loader.CanvasGroup
+G2L["2"] = Instance.new("CanvasGroup", G2L["1"]);
+G2L["2"]["BorderSizePixel"] = 0;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+G2L["2"]["Size"] = UDim2.new(0, 360, 0, 303);
+G2L["2"]["Position"] = UDim2.new(0.40545, 0, 0.35748, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- StarterGui.Loader.CanvasGroup.UIStroke
+G2L["3"] = Instance.new("UIStroke", G2L["2"]);
+G2L["3"]["Color"] = Color3.fromRGB(70, 185, 255);
+
+
+-- StarterGui.Loader.CanvasGroup.UICorner
+G2L["4"] = Instance.new("UICorner", G2L["2"]);
+G2L["4"]["CornerRadius"] = UDim.new(0, 4);
+
+
+-- StarterGui.Loader.CanvasGroup.TextLabel
+G2L["5"] = Instance.new("TextLabel", G2L["2"]);
+G2L["5"]["BorderSizePixel"] = 0;
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5"]["TextSize"] = 20;
+G2L["5"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5"]["BackgroundTransparency"] = 1;
+G2L["5"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5"]["Text"] = [[Loading]];
+G2L["5"]["Position"] = UDim2.new(0.22222, 0, 0.18812, 0);
+
+
+-- StarterGui.Loader.CanvasGroup.ImageLabel
+G2L["6"] = Instance.new("ImageLabel", G2L["2"]);
+G2L["6"]["BorderSizePixel"] = 0;
+G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["6"]["Image"] = [[http://www.roblox.com/asset/?id=124983168071669]];
+G2L["6"]["Size"] = UDim2.new(0, 100, 0, 100);
+G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6"]["BackgroundTransparency"] = 1;
+G2L["6"]["Position"] = UDim2.new(0.36111, 0, 0.46535, 0);
+
+
+-- StarterGui.Loader.CanvasGroup.ImageLabel.UICorner
+G2L["7"] = Instance.new("UICorner", G2L["6"]);
+G2L["7"]["CornerRadius"] = UDim.new(1, 0);
+
+
+-- StarterGui.Loader.CanvasGroup.ImageLabel.UIStroke
+G2L["8"] = Instance.new("UIStroke", G2L["6"]);
+G2L["8"]["Color"] = Color3.fromRGB(70, 185, 255);
+
+
+-- StarterGui.Loader.CanvasGroup.ImageLabel.LocalScript
+G2L["9"] = Instance.new("LocalScript", G2L["6"]);
+
+
+
+-- StarterGui.Loader.CanvasGroup.LocalScript
+G2L["a"] = Instance.new("LocalScript", G2L["2"]);
+
+
+
+-- StarterGui.Loader.CanvasGroup.ImageLabel.LocalScript
+local function C_9()
+local script = G2L["9"];
+	game:GetService('RunService').Heartbeat:Connect(function()
+		script.Parent.Rotation += .2
+	end)
+end;
+task.spawn(C_9);
+-- StarterGui.Loader.CanvasGroup.LocalScript
+local function C_a()
+local script = G2L["a"];
+	task.wait(3)
+	game:GetService('TweenService'):Create(script.Parent, TweenInfo.new(.5), {GroupTransparency = 1}):Play()
+	game:GetService('TweenService'):Create(script.Parent.UIStroke, TweenInfo.new(.5), {Transparency = 1}):Play()
+	task.wait(.5)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSoftworks/a/refs/heads/main/axwareExt"))()
+	script.Parent.Parent:Destroy()
+end;
+task.spawn(C_a);
+
+return G2L["1"], require;
