@@ -1,0 +1,440 @@
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
+
+-- Instances: 34 | Scripts: 4 | Modules: 0 | Tags: 0
+local G2L = {};
+
+-- StarterGui.MaintanceUI
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["Name"] = [[MaintanceUI]];
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+-- StarterGui.MaintanceUI.MainFrame
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["Visible"] = false;
+G2L["2"]["BorderSizePixel"] = 0;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+G2L["2"]["Size"] = UDim2.new(0, 502, 0, 390);
+G2L["2"]["Position"] = UDim2.new(0.37297, 0, 0.29727, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2"]["Name"] = [[MainFrame]];
+
+
+-- StarterGui.MaintanceUI.MainFrame.UICorner
+G2L["3"] = Instance.new("UICorner", G2L["2"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.ImageLabel
+G2L["4"] = Instance.new("ImageLabel", G2L["2"]);
+G2L["4"]["BorderSizePixel"] = 0;
+G2L["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["4"]["ImageColor3"] = Color3.fromRGB(255, 135, 135);
+G2L["4"]["Image"] = [[http://www.roblox.com/asset/?id=6031071057]];
+G2L["4"]["Size"] = UDim2.new(0.20598, 0, 0.26022, 0);
+G2L["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["4"]["BackgroundTransparency"] = 1;
+G2L["4"]["Position"] = UDim2.new(0.39513, 0, 0.02687, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server
+G2L["5"] = Instance.new("Frame", G2L["2"]);
+G2L["5"]["Visible"] = false;
+G2L["5"]["BorderSizePixel"] = 0;
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(31, 31, 31);
+G2L["5"]["Size"] = UDim2.new(0, 149, 0, 180);
+G2L["5"]["Position"] = UDim2.new(0, 15, 0, 181);
+G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5"]["Name"] = [[Server]];
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.Status
+G2L["6"] = Instance.new("TextLabel", G2L["5"]);
+G2L["6"]["TextWrapped"] = true;
+G2L["6"]["BorderSizePixel"] = 0;
+G2L["6"]["TextScaled"] = true;
+G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["6"]["TextSize"] = 15;
+G2L["6"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["6"]["TextColor3"] = Color3.fromRGB(129, 255, 75);
+G2L["6"]["BackgroundTransparency"] = 1;
+G2L["6"]["Size"] = UDim2.new(0.83595, 0, 0.19444, 0);
+G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6"]["Text"] = [[Working]];
+G2L["6"]["Name"] = [[Status]];
+G2L["6"]["Position"] = UDim2.new(0.08181, 0, 0.74521, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.Status.UITextSizeConstraint
+G2L["7"] = Instance.new("UITextSizeConstraint", G2L["6"]);
+G2L["7"]["MaxTextSize"] = 15;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.ImageLabel
+G2L["8"] = Instance.new("ImageLabel", G2L["5"]);
+G2L["8"]["BorderSizePixel"] = 0;
+G2L["8"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["ImageColor3"] = Color3.fromRGB(86, 86, 86);
+G2L["8"]["Image"] = [[http://www.roblox.com/asset/?id=6023426958]];
+G2L["8"]["Size"] = UDim2.new(0.66667, 0, 0.55556, 0);
+G2L["8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["8"]["BackgroundTransparency"] = 1;
+G2L["8"]["Position"] = UDim2.new(0.16379, 0, 0.18768, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.UICorner
+G2L["9"] = Instance.new("UICorner", G2L["5"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.UIStroke
+G2L["a"] = Instance.new("UIStroke", G2L["5"]);
+G2L["a"]["Color"] = Color3.fromRGB(64, 64, 64);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.TextLabel
+G2L["b"] = Instance.new("TextLabel", G2L["5"]);
+G2L["b"]["TextWrapped"] = true;
+G2L["b"]["BorderSizePixel"] = 0;
+G2L["b"]["TextScaled"] = true;
+G2L["b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["b"]["TextSize"] = 20;
+G2L["b"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["b"]["TextColor3"] = Color3.fromRGB(136, 136, 136);
+G2L["b"]["BackgroundTransparency"] = 1;
+G2L["b"]["Size"] = UDim2.new(0.83595, 0, 0.15, 0);
+G2L["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["b"]["Text"] = [[Server]];
+G2L["b"]["Position"] = UDim2.new(0.07514, 0, 0.0341, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.TextLabel.UITextSizeConstraint
+G2L["c"] = Instance.new("UITextSizeConstraint", G2L["b"]);
+G2L["c"]["MaxTextSize"] = 20;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.LocalScript
+G2L["d"] = Instance.new("LocalScript", G2L["5"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client
+G2L["e"] = Instance.new("Frame", G2L["2"]);
+G2L["e"]["Visible"] = false;
+G2L["e"]["BorderSizePixel"] = 0;
+G2L["e"]["BackgroundColor3"] = Color3.fromRGB(31, 31, 31);
+G2L["e"]["Size"] = UDim2.new(0, 149, 0, 180);
+G2L["e"]["Position"] = UDim2.new(0, 180, 0, 181);
+G2L["e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["e"]["Name"] = [[Client]];
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.Status
+G2L["f"] = Instance.new("TextLabel", G2L["e"]);
+G2L["f"]["TextWrapped"] = true;
+G2L["f"]["BorderSizePixel"] = 0;
+G2L["f"]["TextScaled"] = true;
+G2L["f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["f"]["TextSize"] = 15;
+G2L["f"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["f"]["TextColor3"] = Color3.fromRGB(129, 255, 75);
+G2L["f"]["BackgroundTransparency"] = 1;
+G2L["f"]["Size"] = UDim2.new(0.83595, 0, 0.19444, 0);
+G2L["f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["f"]["Text"] = [[Working]];
+G2L["f"]["Name"] = [[Status]];
+G2L["f"]["Position"] = UDim2.new(0.08181, 0, 0.74521, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.Status.UITextSizeConstraint
+G2L["10"] = Instance.new("UITextSizeConstraint", G2L["f"]);
+G2L["10"]["MaxTextSize"] = 15;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.ImageLabel
+G2L["11"] = Instance.new("ImageLabel", G2L["e"]);
+G2L["11"]["BorderSizePixel"] = 0;
+G2L["11"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["11"]["ImageColor3"] = Color3.fromRGB(86, 86, 86);
+G2L["11"]["Image"] = [[http://www.roblox.com/asset/?id=6022668911]];
+G2L["11"]["Size"] = UDim2.new(0.66667, 0, 0.55556, 0);
+G2L["11"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["11"]["BackgroundTransparency"] = 1;
+G2L["11"]["Position"] = UDim2.new(0.16379, 0, 0.18768, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.UICorner
+G2L["12"] = Instance.new("UICorner", G2L["e"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.UIStroke
+G2L["13"] = Instance.new("UIStroke", G2L["e"]);
+G2L["13"]["Color"] = Color3.fromRGB(64, 64, 64);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.TextLabel
+G2L["14"] = Instance.new("TextLabel", G2L["e"]);
+G2L["14"]["TextWrapped"] = true;
+G2L["14"]["BorderSizePixel"] = 0;
+G2L["14"]["TextScaled"] = true;
+G2L["14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["14"]["TextSize"] = 20;
+G2L["14"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["14"]["TextColor3"] = Color3.fromRGB(136, 136, 136);
+G2L["14"]["BackgroundTransparency"] = 1;
+G2L["14"]["Size"] = UDim2.new(0.83595, 0, 0.15, 0);
+G2L["14"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["14"]["Text"] = [[Client]];
+G2L["14"]["Position"] = UDim2.new(0.07514, 0, 0.0341, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.TextLabel.UITextSizeConstraint
+G2L["15"] = Instance.new("UITextSizeConstraint", G2L["14"]);
+G2L["15"]["MaxTextSize"] = 20;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Client.LocalScript
+G2L["16"] = Instance.new("LocalScript", G2L["e"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems
+G2L["17"] = Instance.new("Frame", G2L["2"]);
+G2L["17"]["Visible"] = false;
+G2L["17"]["BorderSizePixel"] = 0;
+G2L["17"]["BackgroundColor3"] = Color3.fromRGB(31, 31, 31);
+G2L["17"]["Size"] = UDim2.new(0, 149, 0, 180);
+G2L["17"]["Position"] = UDim2.new(0, 338, 0, 181);
+G2L["17"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["17"]["Name"] = [[Systems]];
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.Status
+G2L["18"] = Instance.new("TextLabel", G2L["17"]);
+G2L["18"]["TextWrapped"] = true;
+G2L["18"]["BorderSizePixel"] = 0;
+G2L["18"]["TextScaled"] = true;
+G2L["18"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["18"]["TextSize"] = 15;
+G2L["18"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["18"]["TextColor3"] = Color3.fromRGB(255, 63, 63);
+G2L["18"]["BackgroundTransparency"] = 1;
+G2L["18"]["Size"] = UDim2.new(0.83595, 0, 0.19444, 0);
+G2L["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["18"]["Text"] = [[Issue]];
+G2L["18"]["Name"] = [[Status]];
+G2L["18"]["Position"] = UDim2.new(0.08181, 0, 0.74521, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.Status.UITextSizeConstraint
+G2L["19"] = Instance.new("UITextSizeConstraint", G2L["18"]);
+G2L["19"]["MaxTextSize"] = 15;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.ImageLabel
+G2L["1a"] = Instance.new("ImageLabel", G2L["17"]);
+G2L["1a"]["BorderSizePixel"] = 0;
+G2L["1a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1a"]["ImageColor3"] = Color3.fromRGB(86, 86, 86);
+G2L["1a"]["Image"] = [[rbxassetid://10709782497]];
+G2L["1a"]["Size"] = UDim2.new(0.66667, 0, 0.55556, 0);
+G2L["1a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1a"]["BackgroundTransparency"] = 1;
+G2L["1a"]["Position"] = UDim2.new(0.16379, 0, 0.18768, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.UICorner
+G2L["1b"] = Instance.new("UICorner", G2L["17"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.UIStroke
+G2L["1c"] = Instance.new("UIStroke", G2L["17"]);
+G2L["1c"]["Color"] = Color3.fromRGB(64, 64, 64);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.TextLabel
+G2L["1d"] = Instance.new("TextLabel", G2L["17"]);
+G2L["1d"]["TextWrapped"] = true;
+G2L["1d"]["BorderSizePixel"] = 0;
+G2L["1d"]["TextScaled"] = true;
+G2L["1d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["1d"]["TextSize"] = 20;
+G2L["1d"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["1d"]["TextColor3"] = Color3.fromRGB(136, 136, 136);
+G2L["1d"]["BackgroundTransparency"] = 1;
+G2L["1d"]["Size"] = UDim2.new(0.83595, 0, 0.15, 0);
+G2L["1d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1d"]["Text"] = [[Systems]];
+G2L["1d"]["Position"] = UDim2.new(0.07514, 0, 0.0341, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.TextLabel.UITextSizeConstraint
+G2L["1e"] = Instance.new("UITextSizeConstraint", G2L["1d"]);
+G2L["1e"]["MaxTextSize"] = 20;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Systems.LocalScript
+G2L["1f"] = Instance.new("LocalScript", G2L["17"]);
+
+
+
+-- StarterGui.MaintanceUI.MainFrame.TextLabel
+G2L["20"] = Instance.new("TextLabel", G2L["2"]);
+G2L["20"]["TextWrapped"] = true;
+G2L["20"]["BorderSizePixel"] = 0;
+G2L["20"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["20"]["TextSize"] = 30;
+G2L["20"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["20"]["TextColor3"] = Color3.fromRGB(255, 86, 86);
+G2L["20"]["BackgroundTransparency"] = 1;
+G2L["20"]["Size"] = UDim2.new(0.83595, 0, 0.10128, 0);
+G2L["20"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["20"]["Text"] = [[An issue occoured!]];
+G2L["20"]["Position"] = UDim2.new(0.07913, 0, 0.33767, 0);
+
+
+-- StarterGui.MaintanceUI.MainFrame.TextLabel.UITextSizeConstraint
+G2L["21"] = Instance.new("UITextSizeConstraint", G2L["20"]);
+G2L["21"]["MaxTextSize"] = 20;
+
+
+-- StarterGui.MaintanceUI.MainFrame.Manager
+G2L["22"] = Instance.new("LocalScript", G2L["2"]);
+G2L["22"]["Name"] = [[Manager]];
+
+
+-- StarterGui.MaintanceUI.MainFrame.Server.LocalScript
+local function C_d()
+local script = G2L["d"];
+	local OffClr = Color3.fromRGB(63, 63, 63)
+	local OnClr = Color3.fromRGB(51, 117, 168)
+	local TS = game:GetService('TweenService')
+	
+	script.Parent.MouseEnter:Connect(function()
+		TS:Create(script.Parent.UIStroke, TweenInfo.new(.5), {Color = OnClr}):Play()
+	end)
+	script.Parent.MouseLeave:Connect(function()
+		TS:Create(script.Parent.UIStroke, TweenInfo.new(.5), {Color = OffClr}):Play()
+	end)
+end;
+task.spawn(C_d);
+-- StarterGui.MaintanceUI.MainFrame.Client.LocalScript
+local function C_16()
+local script = G2L["16"];
+	local OffClr = Color3.fromRGB(63, 63, 63)
+	local OnClr = Color3.fromRGB(51, 117, 168)
+	local TS = game:GetService('TweenService')
+	
+	script.Parent.MouseEnter:Connect(function()
+		TS:Create(script.Parent.UIStroke, TweenInfo.new(.5), {Color = OnClr}):Play()
+	end)
+	script.Parent.MouseLeave:Connect(function()
+		TS:Create(script.Parent.UIStroke, TweenInfo.new(.5), {Color = OffClr}):Play()
+	end)
+end;
+task.spawn(C_16);
+-- StarterGui.MaintanceUI.MainFrame.Systems.LocalScript
+local function C_1f()
+local script = G2L["1f"];
+	local OffClr = Color3.fromRGB(63, 63, 63)
+	local OnClr = Color3.fromRGB(51, 117, 168)
+	local TS = game:GetService('TweenService')
+	
+	script.Parent.MouseEnter:Connect(function()
+		TS:Create(script.Parent.UIStroke, TweenInfo.new(.5), {Color = OnClr}):Play()
+	end)
+	script.Parent.MouseLeave:Connect(function()
+		TS:Create(script.Parent.UIStroke, TweenInfo.new(.5), {Color = OffClr}):Play()
+	end)
+end;
+task.spawn(C_1f);
+-- StarterGui.MaintanceUI.MainFrame.Manager
+local function C_22()
+local script = G2L["22"];
+	local Client = script.Parent.Client
+	local Server = script.Parent.Server
+	local Systems = script.Parent.Systems
+	
+	local TS = game:GetService('TweenService')
+	local Player = game:GetService('Players').LocalPlayer
+	local Colors = {}
+	
+	script.Parent.Visible = true
+	
+	-- Grab Information
+	local GrabbedInfo = {
+		Ping = Player:GetNetworkPing(), -- Get ping in seconds
+		--LTest = loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSoftworks/a/refs/heads/main/AxwareLoadstringTest"))(), -- Uncomment if used
+		STest = function()
+			for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+				if v.Name == Player.Name then -- Check if player exists
+					return true
+				end
+			end
+			return false
+		end,
+	}
+	
+	local res01 = string.format("%.3f", GrabbedInfo.Ping)
+	local passed01 = false
+	if tonumber(res01) < 100 then
+		passed01 = true
+	end
+	
+	local res02 = GrabbedInfo.STest()
+	if res02 and passed01 then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSoftworks/a/refs/heads/main/axwareExt"))()
+		script.Parent.Parent:Destroy()
+		return
+	end
+	
+	-- Define Colors
+	Colors.Working = Color3.fromRGB(128, 255, 74)
+	Colors.Error = Color3.fromRGB(255, 62, 62)
+	Colors.Warning = Color3.fromRGB(255, 193, 6)
+	
+	-- TextLabel Animation
+	task.wait(0.5)
+	TS:Create(script.Parent.TextLabel, TweenInfo.new(1), {Position = UDim2.new(0.079, 0, 0.502, 0)}):Play()
+	task.wait(0.5)
+	script.Parent.TextLabel.Text = "Analysing errors."
+	task.wait(0.3)
+	script.Parent.TextLabel.Text = "Analysing errors.."
+	task.wait(0.3)
+	script.Parent.TextLabel.Text = "Analysing errors..."
+	task.wait(0.5)
+	script.Parent.TextLabel.Text = "Error Found!"
+	task.wait(0.4)
+	TS:Create(script.Parent.TextLabel, TweenInfo.new(1), {Position = UDim2.new(0.079, 0, 0.338, 0)}):Play()
+	task.wait(1)
+	
+	Client.Visible = true
+	local res1 = string.format("%.3f", GrabbedInfo.Ping)
+	if tonumber(res1) < 100 then
+		Client.Status.Text = "Working";
+		Client.Status.TextColor3 = Colors.Working;
+	end
+	
+	Server.Visible = true
+	local res2 =  GrabbedInfo.STest()
+	if res2 then
+		Server.Status.Text = "Working";
+		Server.Status.TextColor3 = Colors.Working;
+	end
+	
+	Systems.Visible = true
+	Systems.Status.Text = "N/A";
+	Systems.Status.TextColor3 = Colors.Warning;
+end;
+task.spawn(C_22);
+
+return G2L["1"], require;
