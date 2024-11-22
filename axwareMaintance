@@ -392,7 +392,7 @@ local script = G2L["22"];
 	
 	local res02 = GrabbedInfo.STest()
 	if res02 and passed01 then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSoftworks/a/refs/heads/main/axwareExt"))()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/StormSoftworks/a/refs/heads/main/axwareLoader"))()
 		script.Parent.Parent:Destroy()
 		return
 	end
