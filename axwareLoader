@@ -84,7 +84,7 @@ G2L["a"] = Instance.new("LocalScript", G2L["2"]);
 local function C_9()
 local script = G2L["9"];
 	game:GetService('RunService').Heartbeat:Connect(function()
-		script.Parent.Rotation += .2
+		if G2L["2"] then script.Parent.Rotation += .2 end
 	end)
 end;
 task.spawn(C_9);
