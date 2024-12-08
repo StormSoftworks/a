@@ -1,0 +1,3 @@
+local table = {"player1", "player2"}
+
+return table
