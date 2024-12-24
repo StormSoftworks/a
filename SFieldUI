@@ -213,19 +213,6 @@ function field:NewGUI(...)
 		local runService = (game:GetService("RunService"));
 
 		local gui = script.Parent
-		local isHoldingTopBar = false
-		local isHoldingMainFrame = false
-		local isClickHoldingTopBar = false
-		local isCProvClickHolding = false
-
-		UI["4"].MouseEnter:Connect(function() isHoldingTopBar = true end)
-		UI["4"].MouseLeave:Connect(function() isHoldingTopBar = false end)
-		
-		UI["2"].MouseEnter:Connect(function() isHoldingMainFrame = true end)
-		UI["2"].MouseLeave:Connect(function() isHoldingMainFrame = false end)
-		
-		UI["12"].MouseEnter:Connect(function() isCProvClickHolding = true end)
-		UI["12"].MouseLeave:Connect(function() isCProvClickHolding = false end)
 
 		local dragging
 		local dragInput
@@ -240,19 +227,17 @@ function field:NewGUI(...)
 		local lastGoalPos
 		local DRAG_SPEED = (8); -- // The speed of the UI darg.
 		function Update(dt)
-			if isHoldingTopBar and not isCProvClickHolding or isHoldingMainFrame and not isCProvClickHolding then
-				if not (startPos) then return end;
-				if not (dragging) and (lastGoalPos) then 
-					gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
-					return 
-				end;
+			if not (startPos) then return end;
+			if not (dragging) and (lastGoalPos) then 
+				gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+				return 
+			end;
 
-				local delta = (lastMousePos - UserInputService:GetMouseLocation())
-				local xGoal = (startPos.X.Offset - delta.X);
-				local yGoal = (startPos.Y.Offset - delta.Y);
-				lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
-				gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
-			end
+			local delta = (lastMousePos - UserInputService:GetMouseLocation())
+			local xGoal = (startPos.X.Offset - delta.X);
+			local yGoal = (startPos.Y.Offset - delta.Y);
+			lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+			gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
 		end;
 
 		gui.InputBegan:Connect(function(input)
