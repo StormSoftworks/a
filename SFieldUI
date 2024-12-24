@@ -1019,3 +1019,5 @@ function field:NewGUI(...)
 	
 	return UI
 end
+
+return field
